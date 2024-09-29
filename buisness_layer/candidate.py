@@ -35,8 +35,8 @@ class Candidate:
                                   question=new_question.question)
             self.logger.log(
                 component='post_question',
-                message=f'candidate(id:{self.user_id}) has '
-                        f'successfully asked a question(id:{new_question.id})',
+                message=f'candidate(id={self.user_id}) has '
+                        f'successfully asked a question(id={new_question.id})',
                 level='info'
             )
             return added_question
@@ -54,7 +54,7 @@ class Candidate:
         except DatabaseFetchException as exception:
             self.logger.log(
                 component='get_question_responses',
-                message=f'unable to fetch questions asked by user(id:{self.user_id}) from database',
+                message=f'unable to fetch questions asked by user(id={self.user_id}) from database',
                 level='error'
             )
             raise exception
@@ -88,7 +88,7 @@ class Candidate:
         except DatabaseFetchException as exception:
             self.logger.log(
                 component='get_mass_messages',
-                message=f'unable to fetch mass message received by user(id:{self.user_id}) from database',
+                message=f'unable to fetch mass message received by user(id={self.user_id}) from database',
                 level='error'
             )
             raise exception
@@ -130,4 +130,21 @@ class Candidate:
         return jobs_data
 
     def apply_for_job(self, job_id: int):
-
+        job_application = models.JobApplication(job_id=job_id, applicants_id=self.user_id)
+        try:
+            self.db.add(job_application)
+            self.db.commit()
+        except DatabaseAddException as exception:
+            self.db.rollback()
+            self.logger.log(
+                component='apply_for_job',
+                message=f'user(id={self.user_id}) is not able to apply for job',
+                level='error'
+            )
+            raise exception
+        else:
+            self.db.refresh(job_application)
+            added_job_application = dict(id=job_application.id,
+                                         job_id=job_application.job_id,
+                                         applicant_id=job_application.applicant_id)
+            return added_job_application

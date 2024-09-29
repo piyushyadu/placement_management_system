@@ -73,4 +73,9 @@ class CreateAccount:
                               newusername=new_user.username,
                               email=new_user.email,
                               role=new_user.role)
+            self.logger.log(
+                component='create_candidate',
+                message=f'new user(id={new_user.id}) is successfully created',
+                level='info'
+            )
             return added_user

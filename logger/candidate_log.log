@@ -1,4 +1,4 @@
-2024-09-28 21:46:49 - Candidate - INFO - [post_question]: candidate(id:1) has successfully asked a question(id:2)
-2024-09-28 22:48:20 - Candidate - INFO - [post_question]: response of questions is returned
-2024-09-28 22:48:47 - Candidate - INFO - [post_question]: response of questions is returned
-2024-09-28 22:57:21 - Candidate - INFO - [post_question]: response of questions is returned
+2024-09-29 16:43:21 - Candidate - INFO - [post_question]: candidate(id=1) has successfully asked a question(id=1)
+2024-09-29 16:43:37 - Candidate - INFO - [post_question]: candidate(id=1) has successfully asked a question(id=2)
+2024-09-29 16:44:08 - Candidate - INFO - [get_question_responses]: response of questions are returned
+2024-09-29 16:44:32 - Candidate - INFO - [get_question_responses]: response of questions are returned

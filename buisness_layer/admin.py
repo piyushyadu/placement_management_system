@@ -2,7 +2,7 @@ from sqlalchemy.orm import Session
 from sqlalchemy import desc
 from logger.logger import Logger
 from database_layer import models
-from exceptions.exceptions import DatabaseAddException, DatabaseFetchException
+from exceptions.exceptions import DatabaseAddException, DatabaseFetchException, UserNotFoundException
 
 
 class Admin:
@@ -50,11 +50,13 @@ class Admin:
         except DatabaseFetchException as exception:
             self.logger.log(
                 component='set_account_approval_status',
-                message=f'unable to set status of user(id:{account_id}) to status:{approval_status} in database',
+                message=f'unable to set status(status={approval_status}) of user(id={account_id}) in database',
                 level='error'
             )
             raise exception
 
+        if user is None:
+            raise UserNotFoundException
         user.approval_status = approval_status
         try:
             self.db.add(user)
@@ -74,7 +76,7 @@ class Admin:
                                  approval_status=user.approval_status)
             self.logger.log(
                 component='post_question',
-                message=f'status of user({user.id}) is set to {user.approval_status}',
+                message=f'status of user(id={user.id}) is set to {user.approval_status}',
                 level='info'
             )
             return approved_user

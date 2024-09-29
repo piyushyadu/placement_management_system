@@ -11,8 +11,8 @@ models.Base.metadata.create_all(bind=engine)
 db = get_db()
 
 a=None
-# candidate = CreateAccount(next(db), Logger('logger/candidate_log.log', 'Candidate'))
-#
+
+# candidate = CreateAccount(next(db), Logger('logger/create_account_log.log', 'CreateAccount'))
 # a = dict(username='faraaz',
 #          email='faraaz@gmail.com',
 #          password='root',
@@ -24,11 +24,12 @@ a=None
 # a=candidate.create_candidate(a)
 
 # candidate = Candidate(next(db), Logger('logger/candidate_log.log', 'Candidate'), 1)
-# # a=candidate.post_question('watchGuard interview when?')
+# a=candidate.post_question('watchGuard interview in which room?')
 # a=candidate.get_question_responses(0, 10)
 
-admin = Admin(next(db), Logger('logger/admin_log.log', 'Candidate'), 1)
-a=admin.set_account_approval_status(2, 'approved')
+admin = Admin(next(db), Logger('logger/admin_log.log', 'Admin'), 1)
+a=admin.set_account_approval_status(1, 'approved')
 
-print(a)
+from pprint import pprint
+pprint(a)
 print("done")

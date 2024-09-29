@@ -81,8 +81,9 @@ class Job(Base):
 class JobApplication(Base):
     __tablename__ = 'job_application'
 
-    job_id = Column(Integer, ForeignKey('job.id'), primary_key=True)
-    applicants_id = Column(Integer, ForeignKey('user.id'), primary_key=True)
+    id = Column(Integer, primary_key=True, index=True)
+    job_id = Column(Integer, ForeignKey('job.id'))
+    applicant_id = Column(Integer, ForeignKey('user.id'))
 
     job = relationship('Job', back_populates='applicants')
     applicant = relationship('User', back_populates='applied_jobs')
@@ -105,8 +106,9 @@ class MassMessage(Base):
 class MassMessageReceiver(Base):
     __tablename__ = 'mass_message_receiver'
 
-    mass_message_id = Column(Integer, ForeignKey('mass_message.id'), primary_key=True)
-    receiver_id = Column(Integer, ForeignKey('user.id'), primary_key=True)
+    id = Column(Integer, primary_key=True, index=True)
+    mass_message_id = Column(Integer, ForeignKey('mass_message.id'))
+    receiver_id = Column(Integer, ForeignKey('user.id'))
 
     message = relationship('MassMessage', back_populates='receivers')
     receiver = relationship('User', back_populates='received_mass_messages')
