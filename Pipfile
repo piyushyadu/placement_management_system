@@ -1,0 +1,31 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+bcrypt = "==4.0.1"
+cryptography = "*"
+psycopg2-binary = "*"
+pymysql = "*"
+python-jose = "*"
+python-multipart = "*"
+sqlalchemy = "~=2.0.35"
+uvicorn = "*"
+passlib = "~=1.7.4"
+pytest = "~=8.3.3"
+httpx = "*"
+pytest-asyncio = "*"
+aiofiles = "*"
+jinja2 = "*"
+pydantic = "*"
+starlette = "~=0.38.5"
+jose = "*"
+fastapi = {extras = ["standard"], version = "*"}
+sqlalchemy2-stubs = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.12"
+python_full_version = "3.12.4"

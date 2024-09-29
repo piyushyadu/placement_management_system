@@ -1,0 +1,97 @@
+if not isinstance(candidate, dict):
+    self.logger.log(
+        component='create_candidate',
+        message=f'expected dict argument got {type(candidate).__name__}',
+        level='error'
+    )
+    raise UnsupportedDataType(expected='dict', got=type(candidate).__name__)
+
+required_keys = {'username', 'email', 'password', 'first_name',
+                 'last_name', 'degree', 'branch', 'cgpa'}
+missing_arguments = required_keys - candidate.keys()
+extra_keys = candidate.keys() - required_keys
+if missing_arguments:
+    self.logger.log(
+        component='create_candidate',
+        message='expected keys in argument candidate is not found',
+        level='error'
+    )
+    raise UnsupportedDataValue(message='expected keys not provided in dict argument')
+if extra_keys:
+    self.logger.log(
+        component='create_candidate',
+        message='more keys are given in argument candidate then expected',
+        level='warning'
+    )
+
+
+
+
+-------------------------------------------------------------------------------------------------------------------
+
+
+
+    username: str = candidate.get('username')
+        added_user = self.db.query(models.User).filter(models.User.username == username).first()
+        if added_user is None:
+            raise DataNotInsertedException
+
+        added_user = dict(username=added_user.username,
+                          email=added_user.email)
+        return added_user
+
+
+
+--------------------------------------------------------------------------------------------------------------------
+
+class User(Base):
+    __tablename__ = 'user'
+
+    id = Column(Integer, primary_key=True, index=True)
+    username = Column(String, unique=True, nullable=False)
+    email = Column(String, unique=True, nullable=False)
+    hashed_password = Column(String, nullable=False)
+    first_name = Column(String, nullable=False)
+    last_name = Column(String)
+    approval_status = Column(String, default='pending')
+    role = Column(String, nullable=False)
+    asked_question = relationship('Question',
+                                  foreign_keys='Question.questioner_id',
+                                  back_populates='questioner')
+    answered_question = relationship('Question',
+                                     foreign_keys='Question.answerer_id',
+                                     back_populates='answerer')
+
+class Question(Base):
+    __tablename__ = 'question'
+
+    id = Column(Integer, primary_key=True, index=True)
+    questioner_id = Column(Integer, ForeignKey('user.id'), nullable=False)
+    question = Column(String, nullable=False)
+    answerer_id = Column(Integer, ForeignKey('user.id'))
+    answer = Column(String)
+
+    questioner = relationship('User',
+                              foreign_keys=[questioner_id],
+                              back_populates='asked_question')
+    answerer = relationship('User',
+                            foreign_keys=[answerer_id],
+                            back_populates='answered_question')
+
+
+
+------------------------------------------------------------------------------------------------------------------
+
+
+message_orm_objects = (
+            self.db.query(models.MassMessageReceiver)
+            .join(models.MassMessage, models.MassMessage.id == models.MassMessageReceiver.mass_message_id)
+            .order_by(desc(models.MassMessageReceiver.message.sent_at))
+            .filter(models.MassMessageReceiver.receiver_id == self.user_id)
+            .offset(offset_count)
+            .limit(limit_count)
+            .all()
+        )
+
+
+
