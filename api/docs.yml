@@ -1,0 +1,167 @@
+openapi: 3.0.1
+info:
+  title: Placement Management System API
+  description: This is set of api which will be used by placement management system app
+  version: 1.0.0
+servers:
+  - url: https://127.0.0.1:8000/v1.0
+paths:
+  /questions/ask:
+    post:
+      summary: Post a question asked by a user
+      description: This endpoint allow user having candidate role to post a question by providing question string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/questionAsk'
+      responses:
+        201:
+          description: Question is posted successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/questionAskResponse'
+        404:
+          description: User not found
+        400:
+          $ref: '#/components/responses/badRequest'
+        500:
+          description: Internal server error
+      security:
+        - jwt: []
+  /questions/responses:
+    get:
+      summary: Give responses of questions
+      description: Give responses of questions asked by a user
+      parameters:
+        - $ref: '#/components/parameters/Page'
+        - $ref: '#/components/parameters/Elements'
+      responses:
+        200:
+          description: Response of questions received successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                description: List containing objects which has information regarding a question
+                items:
+                  $ref: '#/components/schemas/questionResponse'
+
+
+
+
+
+components:
+  requestBodies:
+  parameters:
+    Page:
+      name: page
+      in: query
+      required: true
+      description: Page number of which we have to give response
+      schema:
+        type: integer
+        example: 12
+    Elements:
+      name: element
+      in: query
+      required: false
+      description: Number of data element in one page
+      schema:
+        type: integer
+        example: 20
+  responses:
+    badRequest:
+      description: Invalid data supplied
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              invalidDataIn:
+                type: array
+                description: List of properties in which invalid data is supplied
+                items:
+                  type: string
+                example: [ "id", "username" ]
+    notFound:
+      description:
+  schemas:
+    questionAsk:
+      type: object
+      properties:
+        question:
+          type: string
+          description: The question to be asked
+          example: "My watchGuard interview in which room number?"
+      required:
+        - question
+    questionAskResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: ID of question
+          example: 96
+        questioner_id:
+          type: integer
+          description: ID of user who posted question
+          example: 12
+        question:
+          type: string
+          description: Question that user had asked
+          example: "My watchGuard interview at which time?"
+    questionResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: ID of question
+          example: 12
+        questioner:
+          type: integer
+          description: ID of questioner
+          example: 23
+        asked_at:
+          type: string
+          description: Date and time at which question was asked
+          example: "2024-09-29 11:13:21.503688"
+        question:
+          type: string
+          description: Question asked
+          example: "watchGuard interview in which room?"
+        response_status:
+          type: string
+          description: Status of question(pending, answered, refused)
+          enum: ["pending", "answered", "refused"]
+          example: "pending"
+        answerer_id:
+          type: integer
+          description: ID of answerer
+          example: 33
+        answered_at:
+          type: string
+          description: Date and time at which question was answered
+          example: "2024-09-29 11:13:21.503688"
+        answer:
+          type: string
+          description: Question asked
+          example: "watchGuard interview in which room?"
+      required:
+        - id
+        - questioner_id
+        - asked_at
+        - question
+        - response_status
+
+  securitySchemes:
+    jwt:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+
+
+
