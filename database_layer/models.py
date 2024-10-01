@@ -71,7 +71,7 @@ class Job(Base):
     applicable_degree = Column(String, nullable=False)
     applicable_branches = Column(String, nullable=False)
     total_round_count = Column(Integer, nullable=False)
-    current_round = Column(Integer, nullable=False)
+    current_round = Column(Integer, default=0)
     application_closed_on = Column(DateTime, nullable=False)
 
     applicants = relationship('JobApplication', back_populates='job')

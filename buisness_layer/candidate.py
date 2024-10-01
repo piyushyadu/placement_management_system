@@ -102,7 +102,7 @@ class Candidate:
         )
         return messages_data
 
-    def get_applicable_job_postings(self, offset_count: int, limit_count: int):
+    def get_open_job_postings(self, offset_count: int, limit_count: int):
         try:
             jobs = (
                 self.db.query(models.Job)
@@ -114,7 +114,7 @@ class Candidate:
             )
         except DatabaseFetchException as exception:
             self.logger.log(
-                component='get_applicable_job_postings',
+                component='get_open_job_postings',
                 message=f'unable to fetch job postings from database',
                 level='error'
             )
@@ -123,7 +123,7 @@ class Candidate:
         jobs_data = [job for job in jobs]
         jobs_data = list(map(Candidate.convert_orm_object_to_dict, jobs_data))
         self.logger.log(
-            component='get_applicable_job_postings',
+            component='get_open_job_postings',
             message='applicable job postings are returned',
             level='info'
         )
