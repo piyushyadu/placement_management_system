@@ -25,14 +25,15 @@ a=None
 # a=candidate.create_candidate(a)
 
 candidate = Candidate(next(db), Logger('logger/candidate_log.log', 'Candidate'), 1)
-a=candidate.post_question('watchGuard interview in which room?')
+# a=candidate.post_question('watchGuard interview in which room?')
 # a=candidate.get_question_responses(0, 10)
+a=candidate.get_applicable_job_postings(0, 10)
 
 # admin = Admin(next(db), Logger('logger/admin_log.log', 'Admin'), 1)
 # a=admin.set_account_approval_status(1, 'approved')
 
 # import datetime
-# job = Job(next(db), Logger('logger/job_log.log', 'Job'))
+# job = Job(next(db), Logger('logger/job_log.log', 'Job'), 1)
 # job_detail = dict(
 #     company_name='watchGuard',
 #     job_description='sde role',

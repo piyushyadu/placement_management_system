@@ -3,3 +3,5 @@
 2024-09-29 16:44:08 - Candidate - INFO - [get_question_responses]: response of questions are returned
 2024-09-29 16:44:32 - Candidate - INFO - [get_question_responses]: response of questions are returned
 2024-10-01 11:48:55 - Candidate - INFO - [post_question]: candidate(id=1) has successfully asked a question(id=1)
+2024-10-05 13:17:14 - Candidate - INFO - [get_applicable_job_postings]: applicable job postings are returned
+2024-10-05 13:18:43 - Candidate - INFO - [get_applicable_job_postings]: applicable job postings are returned

@@ -3,6 +3,7 @@ from sqlalchemy import desc
 from logger.logger import Logger
 from database_layer import models
 from exceptions.exceptions import DatabaseAddException, DatabaseFetchException, UserNotFoundException
+from exceptions.admin_exceptions import SelfStatusSetException
 
 
 class Admin:
@@ -11,7 +12,7 @@ class Admin:
         self.logger = logger
         self.user_id = user_id
 
-    def get_unapproved_account(self, offset_count: int, limit_count: int):
+    def get_unapproved_accounts(self, offset_count: int, limit_count: int):
         try:
             users = (
                 self.db.query(models.User)
@@ -23,7 +24,7 @@ class Admin:
             )
         except DatabaseFetchException as exception:
             self.logger.log(
-                component='get_unapproved_account',
+                component='get_unapproved_accounts',
                 message='unable to fetch unapproved account from database',
                 level='error'
             )
@@ -32,7 +33,7 @@ class Admin:
         users_data = [user for user in users]
         users_data = list(map(Admin.convert_orm_object_to_dict, users_data))
         self.logger.log(
-            component='get_unapproved_account',
+            component='get_unapproved_accounts',
             message=f'unapproved accounts are returned',
             level='info'
         )
@@ -45,6 +46,8 @@ class Admin:
         return data
 
     def set_account_approval_status(self, account_id: int, approval_status: str):
+        if account_id == self.user_id:
+            raise SelfStatusSetException(self.user_id)
         try:
             user = self.db.query(models.User).filter(models.User.id == account_id).first()
         except DatabaseFetchException as exception:

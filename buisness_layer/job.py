@@ -1,5 +1,5 @@
 from sqlalchemy.orm import Session
-from sqlalchemy import desc
+from sqlalchemy import desc, asc
 from logger.logger import Logger
 from database_layer import models
 from exceptions.exceptions import DatabaseAddException, DatabaseFetchException
@@ -13,7 +13,8 @@ class Job:
         self.user_id = user_id
 
     def create_job_posting(self, job_details):
-        job_details['applicable_branches'] = ','.join(job_details.get('applicable_branches'))
+        applicable_branches = '|' + '|'.join(job_details.get('applicable_branches')) + '|'
+        job_details['applicable_branches'] = applicable_branches
         job = models.Job(**job_details)
         try:
             self.db.add(job)
@@ -94,7 +95,31 @@ class Job:
         answered_question = Job.convert_orm_object_to_dict(question)
         return answered_question
 
-    def
+    def get_job_postings(self, offset_count: int, limit_count: int):
+        try:
+            jobs = (
+                self.db.query(models.Job)
+                .order_by(asc(models.Job.application_closed_on))
+                .offset(offset_count)
+                .limit(limit_count)
+                .all()
+            )
+        except DatabaseFetchException as exception:
+            self.logger.log(
+                component='get_job_postings',
+                message=f'unable to fetch job postings from database',
+                level='error'
+            )
+            raise exception
+
+        jobs_data = [job for job in jobs]
+        jobs_data = list(map(Job.convert_orm_object_to_dict, jobs_data))
+        self.logger.log(
+            component='get_job_postings',
+            message='job postings are returned',
+            level='info'
+        )
+        return jobs_data
 
 
 
