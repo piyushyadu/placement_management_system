@@ -1,17 +1,36 @@
-from database_layer.database import engine, get_db
+from fastapi import FastAPI
+from database_layer.database import engine
 from database_layer import models
-from logger.logger import Logger
-from buisness_layer.create_account import CreateAccount
-from buisness_layer.candidate import Candidate
-from buisness_layer.admin import Admin
-from buisness_layer.job import Job
+from api.routs import create_account
 
+app = FastAPI()
 
 models.Base.metadata.create_all(bind=engine)
 
-db = get_db()
 
-a=None
+@app.get('/')
+def health_check():
+    return {'status': 'healthy'}
+
+
+app.include_router(create_account.router)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# db = get_db()
+
+# a=None
 
 # candidate = CreateAccount(next(db), Logger('logger/create_account_log.log', 'CreateAccount'))
 # a = dict(username='faraaz',
@@ -24,10 +43,10 @@ a=None
 #          cgpa=9.2)
 # a=candidate.create_candidate(a)
 
-candidate = Candidate(next(db), Logger('logger/candidate_log.log', 'Candidate'), 1)
+# candidate = Candidate(next(db), Logger('logger/candidate_log.log', 'Candidate'), 1)
 # a=candidate.post_question('watchGuard interview in which room?')
 # a=candidate.get_question_responses(0, 10)
-a=candidate.get_applicable_job_postings(0, 10)
+# a=candidate.get_applicable_job_postings(0, 10)
 
 # admin = Admin(next(db), Logger('logger/admin_log.log', 'Admin'), 1)
 # a=admin.set_account_approval_status(1, 'approved')
@@ -45,7 +64,17 @@ a=candidate.get_applicable_job_postings(0, 10)
 # )
 # a = job.create_job_posting(job_detail)
 
-from pprint import pprint
-pprint(a)
-print("done")
-print('done')
+# from pprint import pprint
+# pprint(a)
+# print("done")
+# print('done')
+
+
+
+
+
+
+
+
+
+
