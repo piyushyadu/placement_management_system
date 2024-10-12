@@ -1,4 +1,5 @@
 import logging
+import uuid
 
 
 class Logger:
@@ -11,12 +12,12 @@ class Logger:
         )
         self.logger = logging.getLogger(log_class)
 
-    def log(self, component, message, level='info'):
+    def log(self, message, level='info'):
         log_pool = dict(
             info=self.logger.info,
             warning=self.logger.warning,
             error=self.logger.error,
             critical=self.logger.critical
         )
-        component = f'[{component}]: '
+        component = '[' + str(uuid.uuid4()) + ']: '
         log_pool[level](component + message)

@@ -23,20 +23,12 @@ class Admin:
                 .all()
             )
         except DatabaseFetchException as exception:
-            self.logger.log(
-                component='get_unapproved_accounts',
-                message='unable to fetch unapproved account from database',
-                level='error'
-            )
             raise exception
 
         users_data = [user for user in users]
         users_data = list(map(Admin.convert_orm_object_to_dict, users_data))
-        self.logger.log(
-            component='get_unapproved_accounts',
-            message=f'unapproved accounts are returned',
-            level='info'
-        )
+        for user_data in users_data:
+            user_data.pop('hashed_password', None)
         return users_data
 
     @staticmethod
@@ -51,35 +43,20 @@ class Admin:
         try:
             user = self.db.query(models.User).filter(models.User.id == account_id).first()
         except DatabaseFetchException as exception:
-            self.logger.log(
-                component='set_account_approval_status',
-                message=f'unable to set status(status={approval_status}) of user(id={account_id}) in database',
-                level='error'
-            )
             raise exception
 
         if user is None:
-            raise UserNotFoundException
+            raise UserNotFoundException(self.user_id)
         user.approval_status = approval_status
         try:
             self.db.add(user)
             self.db.commit()
         except DatabaseAddException as exception:
             self.db.rollback()
-            self.logger.log(
-                component='set_account_approval_status',
-                message='unable to set approval status in database',
-                level='error'
-            )
             raise exception
         else:
             self.db.refresh(user)
             approved_user = dict(id=user.id,
                                  username=user.username,
                                  approval_status=user.approval_status)
-            self.logger.log(
-                component='post_question',
-                message=f'status of user(id={user.id}) is set to {user.approval_status}',
-                level='info'
-            )
             return approved_user

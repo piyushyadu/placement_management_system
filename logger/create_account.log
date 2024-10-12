@@ -1,1 +1,3 @@
 2024-10-10 09:57:23 - api_create_account - INFO - [create_candidate]: user(email=rish@abc.com) is trying to create account
+2024-10-10 14:26:26 - api_create_account - INFO - [create_candidate]: user(email=string) is trying to create account
+2024-10-10 14:26:26 - CreateAccount - INFO - [create_candidate]: new user(id=3) is successfully created

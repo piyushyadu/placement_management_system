@@ -93,5 +93,15 @@ message_orm_objects = (
             .all()
         )
 
+-----------------------------------------------------------------------------------------------------------------
 
+class QuestionData(BaseModel):
+    id: int = Field(gt=0, le=10**10)
+    questioner_id: int = Field(gt=0, le=10**10)
+    asked_at: str = Field(min_length=1, max_length=100)
+    question: str = Field(min_length=1, max_length=10**4)
+    response_status: str = Field(min_length=1, max_length=100)
+    answerer_id: int = Field(gt=0, le=10**10)
+    answered_at: str = Field(min_length=1, max_length=100)
+    answer: str = Field(min_length=1, max_length=10**4)
 

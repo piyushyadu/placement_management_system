@@ -2,7 +2,7 @@ from sqlalchemy.orm import Session
 from sqlalchemy import desc, asc
 from logger.logger import Logger
 from database_layer import models
-from exceptions.exceptions import DatabaseAddException, DatabaseFetchException
+from exceptions.exceptions import DatabaseAddException, DatabaseFetchException, JobNotFoundException
 from exceptions.candidate_exceptions import NotApplicableJobException, ClosedJobException
 import datetime
 
@@ -23,23 +23,13 @@ class Candidate:
             self.db.commit()
         except DatabaseAddException as exception:
             self.db.rollback()
-            self.logger.log(
-                component='post_question',
-                message='unable to add a new question in database',
-                level='error'
-            )
             raise exception
         else:
             self.db.refresh(new_question)
             added_question = dict(id=new_question.id,
                                   questioner_id=new_question.questioner_id,
-                                  question=new_question.question)
-            self.logger.log(
-                component='post_question',
-                message=f'candidate(id={self.user_id}) has '
-                        f'successfully asked a question(id={new_question.id})',
-                level='info'
-            )
+                                  question=new_question.question,
+                                  asked_at=new_question.asked_at)
             return added_question
 
     def get_question_responses(self, offset_count: int, limit_count: int):
@@ -53,20 +43,10 @@ class Candidate:
                 .all()
             )
         except DatabaseFetchException as exception:
-            self.logger.log(
-                component='get_question_responses',
-                message=f'unable to fetch questions asked by user(id={self.user_id}) from database',
-                level='error'
-            )
             raise exception
 
         questions_data = [question for question in questions]
         questions_data = list(map(Candidate.convert_orm_object_to_dict, questions_data))
-        self.logger.log(
-            component='get_question_responses',
-            message=f'response of questions are returned',
-            level='info'
-        )
         return questions_data
 
     @staticmethod
@@ -87,20 +67,10 @@ class Candidate:
                 .all()
             )
         except DatabaseFetchException as exception:
-            self.logger.log(
-                component='get_mass_messages',
-                message=f'unable to fetch mass message received by user(id={self.user_id}) from database',
-                level='error'
-            )
             raise exception
 
         messages_data = [message for message in messages]
         messages_data = list(map(Candidate.convert_orm_object_to_dict, messages_data))
-        self.logger.log(
-            component='get_mass_messages',
-            message=f'received mass messages are returned',
-            level='info'
-        )
         return messages_data
 
     def get_applicable_job_postings(self, offset_count: int, limit_count: int):
@@ -118,50 +88,34 @@ class Candidate:
                 .all()
             )
         except DatabaseFetchException as exception:
-            self.logger.log(
-                component='get_applicable_job_postings',
-                message=f'unable to fetch job postings or candidate from database',
-                level='error'
-            )
             raise exception
 
         jobs_data = [job for job in jobs]
         jobs_data = list(map(Candidate.convert_orm_object_to_dict, jobs_data))
-        self.logger.log(
-            component='get_applicable_job_postings',
-            message='applicable job postings are returned',
-            level='info'
-        )
+        for job_data in jobs_data:
+            job_data['applicable_branches'] = job_data.get('applicable_branches').lstrip('|').rstrip('|').split('|')
         return jobs_data
 
     def apply_for_job(self, job_id: int):
         try:
             job = self.db.query(models.Job).filter(models.Job.id == job_id).first()
-            candidate = self.db.query(models.Candidate).filter(models.Candidate == self.user_id).first()
+            candidate = self.db.query(models.Candidate).filter(models.Candidate.user_id == self.user_id).first()
         except DatabaseFetchException as exception:
-            self.logger.log(
-                component='apply_for_job',
-                message=f'user(id={self.user_id}) is not able to fetch his data',
-                level='error'
-            )
             raise exception
 
+        if job is None:
+            raise JobNotFoundException(job_id)
         if not Candidate.is_job_open(job):
-            raise ClosedJobException
+            raise ClosedJobException(job_id)
         if not Candidate.is_user_applicable_for_job(job, candidate):
-            raise NotApplicableJobException
+            raise NotApplicableJobException(self.user_id, job_id)
 
-        job_application = models.JobApplication(job_id=job_id, applicants_id=self.user_id)
+        job_application = models.JobApplication(job_id=job_id, applicant_id=self.user_id)
         try:
             self.db.add(job_application)
             self.db.commit()
         except DatabaseAddException as exception:
             self.db.rollback()
-            self.logger.log(
-                component='apply_for_job',
-                message=f'user(id={self.user_id}) is not able to apply for job',
-                level='error'
-            )
             raise exception
         else:
             self.db.refresh(job_application)
@@ -172,15 +126,17 @@ class Candidate:
 
     @staticmethod
     def is_job_open(job: models.Job):
-        if job.application_closed_on < datetime.datetime.now(datetime.UTC):
+        application_closed_on = job.application_closed_on.replace(tzinfo=datetime.timezone.utc)
+        if application_closed_on < datetime.datetime.now(datetime.UTC):
             return False
         return True
 
     @staticmethod
     def is_user_applicable_for_job(job: models.Job, candidate: models.Candidate):
+
         if job.applicable_degree != candidate.degree:
             return False
-        if candidate.branch not in job.applicable_branches.split(','):
+        if candidate.branch not in job.applicable_branches.lstrip('|').rstrip('|').split('|'):
             return False
         return True
 

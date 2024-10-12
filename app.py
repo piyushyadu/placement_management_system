@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from database_layer.database import engine
 from database_layer import models
-from api.routs import create_account
+from api.routs import create_account, authentication, candidate, admin
 
 app = FastAPI()
 
@@ -14,6 +14,9 @@ def health_check():
 
 
 app.include_router(create_account.router)
+app.include_router(authentication.router)
+app.include_router(candidate.router)
+app.include_router(admin.router)
 
 
 

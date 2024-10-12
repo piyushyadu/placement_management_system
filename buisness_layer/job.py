@@ -21,19 +21,9 @@ class Job:
             self.db.commit()
         except DatabaseAddException as exception:
             self.db.rollback()
-            self.logger.log(
-                component='create_job_posting',
-                message='unable to insert new job posting in database',
-                level='error'
-            )
             raise exception
         else:
             self.db.refresh(job)
-            self.logger.log(
-                component='create_job_posting',
-                message=f'job(id:{job.id}) is successfully posted',
-                level='info'
-            )
             added_job = Job.convert_orm_object_to_dict(job)
             return added_job
 

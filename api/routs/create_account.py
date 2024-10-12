@@ -3,10 +3,11 @@ from typing import Annotated
 from sqlalchemy.orm import Session
 from database_layer.database import get_db
 from logger.logger import Logger
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, field_validator
 from buisness_layer.create_account import CreateAccount
-
+import re
 from exceptions.candidate_exceptions import UsedUsernameException, UsedEmailException
+from constants import Patterns
 
 
 router = APIRouter(
@@ -16,7 +17,7 @@ router = APIRouter(
 
 
 def get_create_account_logger() -> Logger:
-    return Logger('./logger/create_account.log', 'CreateAccount')
+    return Logger('./logger/logs.log', 'CreateAccount')
 
 
 def get_create_account(db: Session = Depends(get_db),
@@ -24,39 +25,49 @@ def get_create_account(db: Session = Depends(get_db),
     return CreateAccount(db, log)
 
 
-def get_api_logger() -> Logger:
-    return Logger('./logger/api/create_account.log', 'api_create_account')
-
-
 class CandidateAccountRequest(BaseModel):
-    username: str
-    email: str
-    password: str
-    first_name: str
-    last_name: str
-    degree: str
-    branch: str
+    username: str = Field(pattern=Patterns.USERNAME, max_length=100)
+    email: str = Field(pattern=Patterns.EMAIL, max_length=100)
+    password: str = Field(min_length=8, max_length=100)
+    first_name: str = Field(pattern=Patterns.NAME, max_length=100)
+    last_name: str = Field(pattern=Patterns.NAME, max_length=100)
+    degree: str = Field(pattern=Patterns.NAME, max_length=100)
+    branch: str = Field(pattern=Patterns.NAME, max_length=100)
     cgpa: float = Field(ge=0, le=10)
 
+    @field_validator('password')
+    @classmethod
+    def validate_password(cls, value: str) -> str:
+        if not re.search(r'[a-z]', value):
+            raise ValueError('Password must contain at least one lowercase letter.')
+        if not re.search(r'[A-Z]', value):
+            raise ValueError('Password must contain at least one uppercase letter.')
+        if not re.search(r'\d', value):
+            raise ValueError('Password must contain at least one digit.')
+        if not re.search(r'\W', value):
+            raise ValueError('Password must contain at least one special character.')
+        return value
 
-@router.post('/candidate')
+
+class CandidateAccountResponse(BaseModel):
+    id: int
+    username: str
+    email: str
+    role: str
+
+
+@router.post('/candidate', response_model=CandidateAccountResponse)
 def create_candidate(candidate_account_request: CandidateAccountRequest,
-                     account_creator: Annotated[CreateAccount, Depends(get_create_account)],
-                     logger: Annotated[Logger, Depends(get_api_logger)]):
+                     account_creator: Annotated[CreateAccount, Depends(get_create_account)]):
 
-    logger.log(
-        component='create_candidate',
-        message=f'user(email={candidate_account_request.email}) is trying to create account',
-        level='info'
-    )
     candidate = dict(**candidate_account_request.model_dump())
     try:
         added_user = account_creator.create_candidate(candidate)
     except UsedUsernameException:
-        raise HTTPException(status_code=400, detail="user is already registered with give username")
+        raise HTTPException(status_code=409, detail=f"Username '{candidate['username']}' already exist.")
     except UsedEmailException:
-        raise HTTPException(status_code=400, detail="user is already registered with give email")
+        raise HTTPException(status_code=400, detail=f"Email '{candidate['email']}' is in use.")
     except Exception:
         raise HTTPException(status_code=500, detail="Internal server error")
     else:
-        return added_user
+        return CandidateAccountResponse(**added_user)

@@ -61,21 +61,11 @@ class CreateAccount:
             self.db.commit()
         except DatabaseAddException as exception:
             self.db.rollback()
-            self.logger.log(
-                component='create_candidate',
-                message='unable to insert insert data in table',
-                level='error'
-            )
             raise exception
         else:
             self.db.refresh(new_user)
             added_user = dict(id=new_user.id,
-                              newusername=new_user.username,
+                              username=new_user.username,
                               email=new_user.email,
                               role=new_user.role)
-            self.logger.log(
-                component='create_candidate',
-                message=f'new user(id={new_user.id}) is successfully created',
-                level='info'
-            )
             return added_user
