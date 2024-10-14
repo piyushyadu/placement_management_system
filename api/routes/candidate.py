@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, HTTPException, Path, Query
+from fastapi import APIRouter, Depends, HTTPException, Path, Query, Request
 from typing import Annotated
 from sqlalchemy.orm import Session
 from database_layer.database import get_db
@@ -10,7 +10,7 @@ from exceptions.candidate_exceptions import UsedUsernameException, UsedEmailExce
 from constants import Patterns
 from exceptions.exceptions import DatabaseAddException, DatabaseFetchException, JobNotFoundException
 from exceptions.candidate_exceptions import NotApplicableJobException, ClosedJobException
-from api.routs.authentication import candidate_auth_dependency
+from api.routes.authentication import candidate_auth_dependency
 import datetime
 from typing import List, Optional
 
@@ -27,8 +27,8 @@ def get_candidate_logger() -> Logger:
 
 def get_candidate(db: Annotated[Session, Depends(get_db)],
                   log: Annotated[Logger, Depends(get_candidate_logger)],
-                  candidate: candidate_auth_dependency) -> Candidate:
-    return Candidate(db, log, candidate.get('id'))
+                  request: Request) -> Candidate:
+    return Candidate(db, log, request.state.user_id)
 
 
 candidate_functionality_dependency = Annotated[Candidate, Depends(get_candidate)]
@@ -45,7 +45,7 @@ class QuestionAskResponse(BaseModel):
     asked_at: datetime.datetime
 
 
-@router.post('/question', response_model=QuestionAskResponse)
+@router.post('/askQuestion', response_model=QuestionAskResponse)
 def post_question(question_request: QuestionAskRequest,
                   candidate_functionality: candidate_functionality_dependency):
     question = candidate_functionality.post_question(question_request.question)

@@ -1,14 +1,15 @@
 from fastapi import FastAPI
 from database_layer.database import engine
 from database_layer import models
-from api.routs import create_account, authentication, candidate, admin
+from api.routes import create_account, authentication, candidate, approval, question
+from api.routes.authorization import RoleAuthorizationMiddleware
 
 app = FastAPI()
 
 models.Base.metadata.create_all(bind=engine)
 
 
-@app.get('/')
+@app.get('/health')
 def health_check():
     return {'status': 'healthy'}
 
@@ -16,8 +17,9 @@ def health_check():
 app.include_router(create_account.router)
 app.include_router(authentication.router)
 app.include_router(candidate.router)
-app.include_router(admin.router)
-
+app.include_router(approval.router)
+app.include_router(question.router)
+app.add_middleware(RoleAuthorizationMiddleware)
 
 
 

@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, HTTPException, Path, Query
+from fastapi import APIRouter, Depends, HTTPException, Path, Query, Request
 from typing import Annotated
 from sqlalchemy.orm import Session
 from database_layer.database import get_db
@@ -9,7 +9,7 @@ import re
 from exceptions.admin_exceptions import SelfStatusSetException
 from constants import Patterns
 from exceptions.exceptions import DatabaseAddException, DatabaseFetchException, JobNotFoundException, UserNotFoundException
-from api.routs.authentication import admin_auth_dependency
+from api.routes.authentication import admin_auth_dependency
 import datetime
 from typing import List, Optional
 
@@ -21,13 +21,13 @@ router = APIRouter(
 
 
 def get_admin_logger() -> Logger:
-    return Logger('./logger/logs.log', 'Admin')
+    return Logger('./logger/logs.log', 'Admin', )
 
 
 def get_admin(db: Annotated[Session, Depends(get_db)],
               log: Annotated[Logger, Depends(get_admin_logger)],
-              admin: admin_auth_dependency) -> Admin:
-    return Admin(db, log, admin.get('id'))
+              request: Request) -> Admin:
+    return Admin(db, log, request.state.user_id)
 
 
 admin_functionality_dependency = Annotated[Admin, Depends(get_admin)]

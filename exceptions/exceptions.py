@@ -14,6 +14,11 @@ class DatabaseFetchException(DatabaseException):
         super().__init__(message)
 
 
+class DatabaseDeleteException(DatabaseException):
+    def __init__(self, message='unable to delete data from database'):
+        super().__init__(message)
+
+
 class NotFoundException(Exception):
     """Base class for resource not found related exception"""
     pass

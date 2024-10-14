@@ -6,3 +6,44 @@ class Patterns:
     NAME = r"^[a-zA-Z\s]{1,50}$"
 
 
+class ResourceName:
+    APPROVAL = '/approval'
+    CREATE_ACCOUNT = '/createAccount'
+    HEALTH = '/health'
+    LOGIN = '/login'
+    Question = '/question'
+
+
+class EndpointName:
+    PENDING_ACCOUNTS = '/pendingAccounts'
+    DECIDE_APPROVAL_STATUS = '/decideApprovalStatus'
+    CANDIDATE = '/candidate'
+    ASK_QUESTION = '/ask'
+    VIEW_ASKED_QUESTIONS = '/view'
+    ANSWER_QUESTION = '/answer'
+
+
+class RoleName:
+    ADMIN = 'admin'
+    CANDIDATE = 'candidate'
+    PLACEMENT_OFFICER = 'placement_officer'
+
+
+
+class HttpErrorMessage:
+    pass
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

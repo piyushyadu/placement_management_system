@@ -74,6 +74,13 @@ def get_candidate(token: Annotated[str, Depends(oauth_bearer)]):
 candidate_auth_dependency = Annotated[dict, Depends(get_candidate)]
 
 
+def get_placement_officer(token: Annotated[str, Depends(oauth_bearer)]):
+    return get_user(token, 'placement officer')
+
+
+placement_officer_auth_dependency = Annotated[dict, Depends(get_placement_officer)]
+
+
 def get_user(token: str, expected_role: str):
     try:
         payload = jwt.decode(token, SECRET_KEY, algorithms=ALGORITHM)
@@ -92,3 +99,13 @@ def get_user(token: str, expected_role: str):
     except JWTError:
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED,
                             detail='could not validate user')
+
+
+def get_user2(token: Annotated[str, Depends(oauth_bearer)]):
+    try:
+        payload = jwt.decode(token, SECRET_KEY, algorithms=ALGORITHM)
+    except JWTError:
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED,
+                            detail='could not validate user')
+    else:
+        return payload

@@ -15,7 +15,7 @@ tags:
   - name: job
     description: Functionalities related to job application
 paths:
-  /question/ask:
+  /candidate/askQuestion:
     post:
       summary: Post a question asked by a user
       description: This endpoint allow user having candidate role to post a question by providing question string
@@ -40,7 +40,24 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/questionData'
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    description: ID of created question
+                    example: 12
+                  questioner_id:
+                    type: integer
+                    description: ID of person who created question
+                    example: 2
+                  question:
+                    type: string
+                    description: Question that is asked by user.
+                    example: "My watchGuard interview in which room number?"
+                  asked_at:
+                    type: string
+                    description: Time at which question was asked
+                    example: "2024-10-12T17:25:10.268409"
         404:
           $ref: '#/components/responses/4xxError'
         400:
@@ -49,7 +66,7 @@ paths:
           $ref: '#/components/responses/serverError'
       security:
         - jwt: [ ]
-  /questions:
+  /candidate/questions:
     get:
       summary: Give list of questions
       description: |
@@ -77,7 +94,7 @@ paths:
           $ref: '#/components/responses/serverError'
       security:
         - jwt: [ ]
-  /question/answer:
+  /placementOfficer/answer:
     put:
       summary: Upload answer of a question
       description: Upload answer of a question whose response is pending

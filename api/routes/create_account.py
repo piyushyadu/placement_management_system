@@ -1,28 +1,23 @@
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, Request
 from typing import Annotated
 from sqlalchemy.orm import Session
 from database_layer.database import get_db
-from logger.logger import Logger
 from pydantic import BaseModel, Field, field_validator
 from buisness_layer.create_account import CreateAccount
 import re
 from exceptions.candidate_exceptions import UsedUsernameException, UsedEmailException
-from constants import Patterns
+from constants import Patterns, ResourceName, EndpointName
 
 
 router = APIRouter(
-    prefix='/createAccount',
-    tags=['createAccount']
+    prefix=ResourceName.CREATE_ACCOUNT,
+    tags=['CreateAccount']
 )
 
 
-def get_create_account_logger() -> Logger:
-    return Logger('./logger/logs.log', 'CreateAccount')
-
-
-def get_create_account(db: Session = Depends(get_db),
-                       log: Logger = Depends(get_create_account_logger)) -> CreateAccount:
-    return CreateAccount(db, log)
+def get_create_account(db: Annotated[Session, Depends(get_db)],
+                       request: Request) -> CreateAccount:
+    return CreateAccount(db, request.state.log)
 
 
 class CandidateAccountRequest(BaseModel):
@@ -56,15 +51,17 @@ class CandidateAccountResponse(BaseModel):
     role: str
 
 
-@router.post('/candidate', response_model=CandidateAccountResponse)
+@router.post(EndpointName.CANDIDATE, response_model=CandidateAccountResponse)
 def create_candidate(candidate_account_request: CandidateAccountRequest,
                      account_creator: Annotated[CreateAccount, Depends(get_create_account)]):
 
     candidate = dict(**candidate_account_request.model_dump())
+
     try:
         added_user = account_creator.create_candidate(candidate)
     except UsedUsernameException:
         raise HTTPException(status_code=409, detail=f"Username '{candidate['username']}' already exist.")
+
     except UsedEmailException:
         raise HTTPException(status_code=400, detail=f"Email '{candidate['email']}' is in use.")
     except Exception:
