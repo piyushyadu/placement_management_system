@@ -53,13 +53,20 @@ class CandidateAccountResponse(BaseModel):
 
 @router.post(EndpointName.CANDIDATE, response_model=CandidateAccountResponse)
 def create_candidate(candidate_account_request: CandidateAccountRequest,
-                     account_creator: Annotated[CreateAccount, Depends(get_create_account)]):
+                     account_creator: Annotated[CreateAccount, Depends(get_create_account)],
+                     request: Request):
+
+    logger = request.state.log
 
     candidate = dict(**candidate_account_request.model_dump())
 
     try:
         added_user = account_creator.create_candidate(candidate)
     except UsedUsernameException:
+        detail = f"Username '{candidate['username']}' already exist."
+        logger(
+
+        )
         raise HTTPException(status_code=409, detail=f"Username '{candidate['username']}' already exist.")
 
     except UsedEmailException:

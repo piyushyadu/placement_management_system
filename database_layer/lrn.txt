@@ -174,4 +174,32 @@ class RoleAuthorizationMiddleware(BaseHTTPMiddleware):
             )
 
 
+-------------------------------------------------------------------------------------------------------------------
+
+self.logger.log(
+                message='Unable to fetch data from db.',
+                level='error'
+            )
+self.logger.log('Questions are retrieved from db successfully.')
+self.logger.log(
+                message='Unable to add data in db.',
+                level='error'
+            )
+self.logger.log(
+                message='Question is added in db successfully.',
+                level='info'
+            )
+
+
+
+
+
+
+
+
+
+
+
+
+
 

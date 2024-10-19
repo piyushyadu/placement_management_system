@@ -1,0 +1,873 @@
+openapi: 3.0.1
+info:
+  title: Placement Management System API
+  description: This is set of api which will be used by placement management system app.
+  version: 1.0.0
+servers:
+  - url: https://127.0.0.1:8000/v1.0.0
+tags:
+
+  - name: Signup
+    description: Used for creating accounts.
+  - name: Authentication
+    description: Used for authenticating users.
+  - name: Account
+    description: Used for getting account requests and approving or refusing account request.
+  - name: Job
+    description: Used for job related activities.
+  - name: Message
+    description: Used by candidate to get messages.
+  - name: Question
+    description: Used by Candidate to ask question and Placement officer to answer them.
+
+paths:
+  /job:
+    post:
+      summary: Used for creating a job posting.
+      description: Used by user having role placementOfficer to create new job Posting.
+      tags:
+        - Job
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                company_name:
+                  type: string
+                  example: watchGuard
+                job_description:
+                  type: string
+                  example: sde role
+                ctc:
+                  type: number
+                  description: CTC in lpa.
+                  example: 9.4
+                applicable_degree:
+                  type: string
+                  description: Candidate having this degree can apply.
+                  example: bachelor of technology
+                applicable_branches:
+                  type: array
+                  description: Candidate having one of the branches can apply.
+                  items:
+                    type: string
+                  example: [ 'computer science and engineering', 'mechanical engineering' ]
+                total_round:
+                  type: integer
+                  example: 4
+                  description: Total number of rounds that will take place
+                application_closed_on:
+                  type: string
+                  description: date and time on which application will be closed
+                  example: 2024-10-06 04:29:41.321536
+      responses:
+        201:
+          description: Job created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/job'
+        404:
+          $ref: '#/components/responses/BadRequest'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+        422:
+          $ref: '#/components/responses/UnprocessableEntity'
+      security:
+        - jwt: [ ]
+  /jobs:
+    get:
+      summary: Get posted jobs
+      description: |
+        Use JWT token to find role of user and return a list of job applications
+        if role is candidate it returns jobs in which candidate can apply and
+        if role is placement officer then return all jos
+      tags:
+        - Job
+      parameters:
+        - $ref: '#/components/parameters/Page'
+        - $ref: '#/components/parameters/PageSize'
+        - in: query
+          name: job_status
+          schema:
+            type: string
+            enum: [ 'open', 'closed' ]
+          required: false
+          description: "Filter job postings by status (open or closed)"
+        - in: query
+          name: order_by_application_closed_on
+          schema:
+            type: boolean
+          required: false
+          description: "Sort by application closed date (True for sorting)"
+        - in: query
+          name: company_name
+          schema:
+            type: string
+            minLength: 1
+            maxLength: 100
+          required: false
+          description: "Filter job postings by company name"
+        - in: query
+          name: max_ctc
+          schema:
+            type: number
+            format: float
+            minimum: 0
+            maximum: 1000000
+          required: false
+          description: "Filter job postings with a maximum CTC (Compensation to Company)"
+        - in: query
+          name: min_ctc
+          schema:
+            type: number
+            format: float
+            minimum: 0
+            maximum: 1000000
+          required: false
+          description: "Filter job postings with a minimum CTC (Compensation to Company)"
+      responses:
+        200:
+          description: Job applications received successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/job'
+        404:
+          $ref: '#/components/responses/BadRequest'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+        422:
+          $ref: '#/components/responses/UnprocessableEntity'
+      security:
+        - jwt: [ ]
+  /job/{job_id}/apply:
+    post:
+      summary: Used for applying for a job.
+      description: Used by user having role Candidate to apply for a job.
+      tags:
+        - Job
+      parameters:
+        - in: path
+          required: true
+          name: job_id
+          schema:
+            type: integer
+            description: Unique Identifier of a job.
+      responses:
+        201:
+          description: Applied for job successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    description: ID of application
+                  job_id:
+                    type: integer
+                    description: ID of job
+                  applicant_id:
+                    type: integer
+                    description: ID of applicant
+        404:
+          $ref: '#/components/responses/BadRequest'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+        422:
+          $ref: '#/components/responses/UnprocessableEntity'
+        403:
+          $ref: '#/components/responses/BadRequest'
+        409:
+          $ref: '#/components/responses/BadRequest'
+      security:
+        - jwt: [ ]
+  /job/{job_id}/applicants:
+    get:
+      summary: Used to get applicants applied for a job.
+      description: Used by placement office to get candidates who have applied for a job.
+      tags:
+        - Job
+      parameters:
+        - $ref: '#/components/parameters/Page'
+        - $ref: '#/components/parameters/PageSize'
+        - in: path
+          required: true
+          name: job_id
+          schema:
+            type: integer
+            description: Unique Identifier of a job.
+      responses:
+        200:
+          description: List of applicants sent successfully.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/user'
+        404:
+          $ref: '#/components/responses/BadRequest'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+        422:
+          $ref: '#/components/responses/UnprocessableEntity'
+      security:
+        - jwt: [ ]
+  /job/{job_id}/next_round:
+    patch:
+      summary: Used for moving job to next round.
+      tags:
+        - Job
+      parameters:
+        - in: path
+          required: true
+          name: job_id
+          schema:
+            type: integer
+            description: Unique Identifier of a job.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                applicants_id_list:
+                  type: array
+                  description: List of applicant IDs
+                  items:
+                    type: integer
+                    format: int64
+                    minimum: 1
+                    maximum: 99999999
+                  example: [ 123456, 789012 ]
+                message:
+                  type: string
+                  description: Message for the next round
+                  minLength: 1
+                  maxLength: 10000
+                  example: "Congratulations, you have moved to the next round!"
+              required:
+                - applicants_id_list
+                - message
+      responses:
+        200:
+          description: Applied for job successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  job_id:
+                    type: integer
+                    description: ID of job
+                  selected_applicants_id:
+                    type: array
+                    description: ID of applicants
+                    items:
+                      type: integer
+                  message:
+                    type: string
+                    description: message that will get sent to applicants who cleared the round.
+                  job_status:
+                    type: string
+                    description: Indicate weather job process is in progress of completed
+                    enum: ['in_progress', 'completed']
+        404:
+          $ref: '#/components/responses/BadRequest'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+        422:
+          $ref: '#/components/responses/UnprocessableEntity'
+      security:
+        - jwt: [ ]
+  /messages:
+    get:
+      summary: Get received messages
+      description: Retrieve a paginated list of messages received by the user.
+      tags:
+        - Message
+      parameters:
+        - $ref: '#/components/parameters/Page'
+        - $ref: '#/components/parameters/PageSize'
+      responses:
+        '200':
+          description: A list of received messages
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/message'
+        404:
+          $ref: '#/components/responses/BadRequest'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+        422:
+          $ref: '#/components/responses/UnprocessableEntity'
+      security:
+        - jwt: [ ]
+  /signup/candidate:
+    post:
+      summary: Create a candidate account
+      description: Registers a new candidate account with the provided details.
+      tags:
+        - Signup
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateCandidate'
+      responses:
+        201:
+          description: Candidate account created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CandidateAccountResponse'
+        404:
+          $ref: '#/components/responses/BadRequest'
+        400:
+          $ref: '#/components/responses/BadRequest'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+        422:
+          $ref: '#/components/responses/UnprocessableEntity'
+  /accounts:
+    get:
+      summary: Retrieve a list of user accounts
+      description: Fetches user accounts based on the specified approval status, with pagination support.
+      tags:
+        - Account
+      parameters:
+        - name: approval_status
+          in: query
+          description: The approval status of accounts to filter by.
+          required: false
+          schema:
+            type: string
+            enum: ['pending', 'approved', 'refused']
+            default: 'pending'
+        - $ref: '#/components/parameters/Page'
+        - $ref: '#/components/parameters/PageSize'
+      responses:
+        200:
+          description: A list of user accounts matching the approval status.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/user'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+        422:
+          $ref: '#/components/responses/UnprocessableEntity'
+  /login:
+    post:
+      summary: Obtain access token
+      description: Authenticates a user with their username and password, returning an access token if successful.
+      tags:
+        - Authentication
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                  description: The user's username
+                  example: "jane_doe"
+                password:
+                  type: string
+                  description: The user's password
+                  example: "Password123!"
+              required:
+                - username
+                - password
+      responses:
+        200:
+          description: Successfully authenticated, returns access token.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  access_token:
+                    type: string
+                    description: JWT access token
+                    example: "eyJhbGciOiJIUzI1NiIsInR..."
+                  token_type:
+                    type: string
+                    description: Type of the token
+                    example: "bearer"
+        401:
+          description: Unauthorized. Invalid username or password.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  detail:
+                    type: string
+                    example: "could not validate user"
+  /question:
+    post:
+      summary: Post a question asked by a user.
+      description: This endpoint allow user having candidate role to post a question by providing question string.
+      tags:
+        - Question
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                question:
+                  type: string
+                  description: The question to be asked
+                  example: "My watchGuard interview in which room number?"
+              required:
+                - question
+      responses:
+        201:
+          description: Question is created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    description: ID of created question
+                    example: 12
+                  questioner_id:
+                    type: integer
+                    description: ID of person who created question
+                    example: 2
+                  question:
+                    type: string
+                    description: Question that is asked by user.
+                    example: "My watchGuard interview in which room number?"
+                  asked_at:
+                    type: string
+                    description: Time at which question was asked
+                    example: "2024-10-12T17:25:10.268409"
+        500:
+          $ref: '#/components/responses/InternalServerError'
+        422:
+          $ref: '#/components/responses/UnprocessableEntity'
+      security:
+        - jwt: [ ]
+  /questions:
+    get:
+      summary: Give list of questions
+      description: |
+        It use jwt to find user role then give questions and responses asked by user if user is Candidate
+        and give questions asked by everyone if role is placementOfficer
+      tags:
+        - Question
+      parameters:
+        - $ref: '#/components/parameters/Page'
+        - $ref: '#/components/parameters/PageSize'
+      responses:
+        200:
+          description: Response of questions received successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Question'
+        500:
+          $ref: '#/components/responses/serverError'
+        501:
+          $ref: '#/components/responses/NotImplemented'
+      security:
+        - jwt: [ ]
+  /question/{question_id}/answer:
+    patch:
+      summary: Upload answer of a question
+      description: Upload answer of a question whose response is pending
+      tags:
+        - Question
+      parameters:
+        - in: path
+          required: true
+          name: question_id
+          schema:
+            type: integer
+            description: ID of question
+            example: 24
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                answer:
+                  type: string
+                  description: Answer given by admin
+                  example: "watchGuard interview in room number 8"
+              required:
+                - id
+                - answer
+      responses:
+        200:
+          description: Answer of question is successfully uploaded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Question'
+        404:
+          $ref: '#/components/responses/BadRequest'
+        500:
+          $ref: '#/components/responses/serverError'
+      security:
+        - jwt: [ ]
+
+
+
+
+
+
+
+
+
+
+
+
+
+components:
+  responses:
+    BadRequest:
+      description: Bad Request (400)
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              details:
+                type: string
+                description: Detail about why this error occurred.
+    UnprocessableEntity:
+      description: Unprocessable Entity (422)
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              detail:
+                type: array
+                description: List of validation error details.
+                items:
+                  $ref: '#/components/schemas/ValidationError'
+    InternalServerError:
+      description: Internal Server Error (500)
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              detail:
+                type: string
+                example: "Internal server error."
+    NotImplemented:
+      description: Not Implemented (501)
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              detail:
+                type: string
+                example: "Feature not implemented"
+  schemas:
+    job:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: ID of job
+          example: 11
+        posted_at:
+          type: string
+          description: date and time at which id was posted
+          example: 2024-10-01 04:29:41.273660
+        company_name:
+          type: string
+          example: watchGuard
+        job_description:
+          type: string
+          example: sde role
+        ctc:
+          type: number
+          example: 9.4
+        applicable_degree:
+          type: string
+          description: Candidate having this degree can apply
+          example: bachelor of technology
+        applicable_branches:
+          type: array
+          description: Candidate having one of the branches can apply
+          items:
+            type: string
+          example: [ 'computer science and engineering', 'mechanical engineering' ]
+        total_round:
+          type: integer
+          example: 4
+          description: Total number of rounds that will take place
+        current_round:
+          type: integer
+          description: Which round is going on currently
+          example: 1
+        application_closed_on:
+          type: string
+          description: date and time on which application will be closed
+          example: 2024-10-06 04:29:41.321536
+      required:
+        - id
+        - posted_at
+        - company_name
+        - job_description
+        - ctc
+        - applicable_degree
+        - applicable_branches
+        - total_rounds
+        - current_round
+        - application_closed_on
+    ValidationError:
+      type: object
+      properties:
+        loc:
+          type: array
+          description: "Location of the error (which field caused the issue)"
+          items:
+            type: string
+        msg:
+          type: string
+          description: "Description of the validation error"
+        type:
+          type: string
+          description: "Type of error (e.g., value_error, type_error)"
+    user:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 23
+        username:
+          type: string
+          example: piyushyadu
+        email:
+          type: string
+          example: piyush@gmail.com
+        created_at:
+          type: string
+          example: 2024-09-29 11:10:57.786642
+        first_name:
+          type: string
+          example: piyush
+        last_name:
+          type: string
+          example: yadav
+        approval_status:
+          type: string
+          example: pending
+        role:
+          type: string
+          example: Candidate
+      required:
+        - id
+        - username
+        - email
+        - created_at
+        - first_name
+        - last_name
+        - approval_status
+        - role
+    message:
+      type: array
+      items:
+        type: object
+        properties:
+          id:
+            type: integer
+            description: ID of the message
+            example: 123
+          sent_at:
+            type: string
+            format: date-time
+            description: The time the message was sent
+            example: "2023-10-19T12:00:00Z"
+          message:
+            type: string
+            description: The content of the message
+            example: "You are shortlisted for the interview."
+          job_id:
+            type: integer
+            description: ID of the related job, if applicable
+            example: 456
+          sender_id:
+            type: integer
+            description: ID of the sender
+            example: 789
+    CandidateAccountResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        username:
+          type: string
+          example: "john_doe"
+        email:
+          type: string
+          example: "john.doe@example.com"
+        role:
+          type: string
+          example: "candidate"
+    CreateCandidate:
+      type: object
+      properties:
+        username:
+          type: string
+          pattern: ^[a-zA-Z][a-zA-Z0-9_.]{5,29}$
+          maxLength: 100
+          example: "john_doe"
+        email:
+          type: string
+          pattern: ^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$
+          maxLength: 100
+          example: "john.doe@example.com"
+        password:
+          type: string
+          minLength: 8
+          maxLength: 100
+          example: "P@ssw0rd!"
+        first_name:
+          type: string
+          pattern: ^[a-zA-Z\s]{1,50}$
+          maxLength: 100
+          example: "John"
+        last_name:
+          type: string
+          pattern: ^[a-zA-Z\s]{1,50}$
+          maxLength: 100
+          example: "Doe"
+        degree:
+          type: string
+          pattern: ^[a-zA-Z\s]{1,50}$
+          maxLength: 100
+          example: "Bachelor of Science"
+        branch:
+          type: string
+          pattern: ^[a-zA-Z\s]{1,50}$
+          maxLength: 100
+          example: "Computer Science"
+        cgpa:
+          type: number
+          minimum: 0
+          maximum: 10
+          example: 9.5
+    LoginRequest:
+      type: object
+      properties:
+        username:
+          type: string
+          example: "jane_doe"
+        password:
+          type: string
+          example: "Password123!"
+    TokenResponse:
+      type: object
+      properties:
+        access_token:
+          type: string
+          example: "eyJhbGciOiJIUzI1NiIsInR..."
+        token_type:
+          type: string
+          example: "bearer"
+    Question:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: ID of question
+          example: 12
+        questioner:
+          type: integer
+          description: ID of questioner
+          example: 23
+        asked_at:
+          type: string
+          description: Date and time at which question was asked
+          example: "2024-09-29 11:13:21.503688"
+        question:
+          type: string
+          description: Question asked
+          example: "watchGuard interview in which room?"
+        response_status:
+          type: string
+          description: Status of question(pending, answered, refused)
+          enum: [ "pending", "answered", "refused" ]
+          example: "pending"
+        answerer_id:
+          type: integer
+          description: ID of answerer
+          example: 33
+        answered_at:
+          type: string
+          description: Date and time at which question was answered
+          example: "2024-09-29 11:13:21.503688"
+        answer:
+          type: string
+          description: Question asked
+          example: "watchGuard interview in which room?"
+      required:
+        - id
+        - questioner_id
+        - asked_at
+        - question
+        - response_status
+        - answerer_id
+        - answered_at
+        - answer
+  parameters:
+    Page:
+      name: page
+      in: query
+      required: false
+      description: Page number of which we have to give response
+      schema:
+        type: integer
+        example: 12
+    PageSize:
+      name: page_size
+      in: query
+      required: false
+      description: Number of data element in one page
+      schema:
+        type: integer
+        example: 20

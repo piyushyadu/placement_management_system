@@ -1,0 +1,584 @@
+#openapi: 3.0.1
+#info:
+#  title: Placement Management System API
+#  description: This is set of api which will be used by placement management system app
+#  version: 1.0.0
+#servers:
+#  - url: https://127.0.0.1:8000/v1.0
+#tags:
+#  - name: question
+#    description: Regarding functionality Candidate can ask question and Placement officer can answer them
+#  - name: createAccount
+#    description: API that are used for creating accounts
+#  - name: adminActions
+#    description: Functionalities that user of role admin hase
+#  - name: job
+#    description: Functionalities related to job application
+#paths:
+#  /candidate/askQuestion:
+#    post:
+#      summary: Post a question asked by a user
+#      description: This endpoint allow user having candidate role to post a question by providing question string
+#      tags:
+#        - question
+#      requestBody:
+#        required: true
+#        content:
+#          application/json:
+#            schema:
+#              type: object
+#              properties:
+#                question:
+#                  type: string
+#                  description: The question to be asked
+#                  example: "My watchGuard interview in which room number?"
+#              required:
+#                - question
+#      responses:
+#        201:
+#          description: Question is created successfully
+#          content:
+#            application/json:
+#              schema:
+#                type: object
+#                properties:
+#                  id:
+#                    type: integer
+#                    description: ID of created question
+#                    example: 12
+#                  questioner_id:
+#                    type: integer
+#                    description: ID of person who created question
+#                    example: 2
+#                  question:
+#                    type: string
+#                    description: Question that is asked by user.
+#                    example: "My watchGuard interview in which room number?"
+#                  asked_at:
+#                    type: string
+#                    description: Time at which question was asked
+#                    example: "2024-10-12T17:25:10.268409"
+#        404:
+#          $ref: '#/components/responses/4xxError'
+#        400:
+#          $ref: '#/components/responses/4xxError'
+#        500:
+#          $ref: '#/components/responses/serverError'
+#      security:
+#        - jwt: [ ]
+#  /candidate/questions:
+#    get:
+#      summary: Give list of questions
+#      description: |
+#        It use jwt to find user role then give questions and responses asked by user if user is Candidate
+#        and give questions asked by everyone if role is placementOfficer
+#      tags:
+#        - question
+#      parameters:
+#        - $ref: '#/components/parameters/Page'
+#        - $ref: '#/components/parameters/Elements'
+#      responses:
+#        200:
+#          description: Response of questions received successfully
+#          content:
+#            application/json:
+#              schema:
+#                type: array
+#                items:
+#                  $ref: '#/components/schemas/questionData'
+#        404:
+#          $ref: '#/components/responses/4xxError'
+#        400:
+#          $ref: '#/components/responses/4xxError'
+#        500:
+#          $ref: '#/components/responses/serverError'
+#      security:
+#        - jwt: [ ]
+#  /placementOfficer/answer:
+#    put:
+#      summary: Upload answer of a question
+#      description: Upload answer of a question whose response is pending
+#      tags:
+#        - question
+#      requestBody:
+#        required: true
+#        content:
+#          application/json:
+#            schema:
+#              type: object
+#              properties:
+#                id:
+#                  type: integer
+#                  description: ID of question
+#                  example: 24
+#                answer:
+#                  type: string
+#                  description: Answer given by admin
+#                  example: "watchGuard interview in room number 8"
+#              required:
+#                - id
+#                - answer
+#      responses:
+#        200:
+#          description: Answer of question is successfully uploaded
+#          content:
+#            application/json:
+#              schema:
+#                $ref: '#/components/schemas/questionData'
+#        404:
+#          $ref: '#/components/responses/4xxError'
+#        400:
+#          $ref: '#/components/responses/4xxError'
+#        500:
+#          $ref: '#/components/responses/serverError'
+#      security:
+#        - jwt: [ ]
+#  /createAccount/candidate:
+#    post:
+#      summary: Create candidate account
+#      description: Create a new user having role candidate
+#      tags:
+#        - createAccount
+#      requestBody:
+#        required: true
+#        content:
+#          application/json:
+#            schema:
+#              type: object
+#              properties:
+#                username:
+#                  type: string
+#                  description: unique username having containing only alphanumeric and underscore characters
+#                  example: piyushyadu
+#                email:
+#                  type: string
+#                  description: unique email address
+#                  example: piyush@gmail.com
+#                password:
+#                  type: string
+#                  description: password with length of at least 8 character containing numbers and special characters
+#                  example: R00tP@@s
+#                first_name:
+#                  type: string
+#                  example: Piyush
+#                last_name:
+#                  type: string
+#                  example: Yadav
+#                degree:
+#                  type: string
+#                  example: Bachelor of Technology
+#                branch:
+#                  type: string
+#                  example: computer science
+#                cgpa:
+#                  type: number
+#                  example: 8.42
+#              required:
+#                - username
+#                - email
+#                - password
+#                - first_name
+#                - last_name
+#                - degree
+#                - branch
+#                - cgpa
+#      responses:
+#        201:
+#          description: Candidate account is successfully created
+#          content:
+#            application/json:
+#              schema:
+#                type: object
+#                properties:
+#                  id:
+#                    type: integer
+#                    description: ID of created user
+#                    example: 21
+#                  username:
+#                    type: string
+#                    description: unique username of created user
+#                    example: piyushyadu
+#                  email:
+#                    type: string
+#                    example: piyush@gmail.com
+#                  role:
+#                    type: string
+#                    enum: ['candidate']
+#                    example: 'candidate'
+#        404:
+#          $ref: '#/components/responses/4xxError'
+#        400:
+#          $ref: '#/components/responses/4xxError'
+#        500:
+#          $ref: '#/components/responses/serverError'
+#  /unapprovedAccounts:
+#    get:
+#      summary: Give unapproved accounts
+#      description: Give a list containing unapproved accounts
+#      tags:
+#        - adminActions
+#      parameters:
+#        - $ref: '#/components/parameters/Page'
+#        - $ref: '#/components/parameters/Elements'
+#      responses:
+#        200:
+#          description: Unapproved account fetched successfully
+#          content:
+#            application/json:
+#              schema:
+#                type: array
+#                items:
+#                  $ref: '#/components/schemas/userAccount'
+#        404:
+#          $ref: '#/components/responses/4xxError'
+#        400:
+#          $ref: '#/components/responses/4xxError'
+#        500:
+#          $ref: '#/components/responses/serverError'
+#      security:
+#        - jwt: [ ]
+#  /unapprovedAccount/decide:
+#    put:
+#      summary: change the approval status
+#      description: change the approval status of an account to approved or refused
+#      tags:
+#        - adminActions
+#      requestBody:
+#        required: true
+#        content:
+#          application/json:
+#            schema:
+#              type: object
+#              properties:
+#                id:
+#                  type: integer
+#                  description: ID of account whose approval status is to be changed
+#                  example: 11
+#                decision:
+#                  type: string
+#                  description: decision that you take for that account
+#                  enum: ['approved', 'refused']
+#                  example: approved
+#      responses:
+#        200:
+#          description: Account approved/refused successfully
+#          content:
+#            application/json:
+#              schema:
+#                $ref: '#/components/schemas/userAccount'
+#        404:
+#          $ref: '#/components/responses/notFound'
+#        400:
+#          $ref: '#/components/responses/badRequest'
+#        500:
+#          $ref: '#/components/responses/serverError'
+#      security:
+#        - jwt: [ ]
+#  /job/create:
+#    post:
+#      summary: Used for creating a job posting
+#      description: Used by user having role placementOfficer to create new job Posting
+#      tags:
+#        - job
+#      requestBody:
+#        required: true
+#        content:
+#          application/json:
+#            schema:
+#              type: object
+#              properties:
+#                company_name:
+#                  type: string
+#                  example: watchGuard
+#                job_description:
+#                  type: string
+#                  example: sde role
+#                ctc:
+#                  type: number
+#                  example: 9.4
+#                applicable_degree:
+#                  type: string
+#                  description: Candidate having this degree can apply
+#                  example: bachelor of technology
+#                applicable_branches:
+#                  type: array
+#                  description: Candidate having one of the branches can apply
+#                  items:
+#                    type: string
+#                  example: [ 'computer science and engineering', 'mechanical engineering' ]
+#                total_round:
+#                  type: integer
+#                  example: 4
+#                  description: Total number of rounds that will take place
+#                application_closed_on:
+#                  type: string
+#                  description: date and time on which application will be closed
+#                  example: 2024-10-06 04:29:41.321536
+#      responses:
+#        201:
+#          description: Job created successfully
+#          content:
+#            application/json:
+#              schema:
+#                $ref: '#/components/schemas/job'
+#        404:
+#          $ref: '#/components/responses/4xxError'
+#        400:
+#          $ref: '#/components/responses/4xxError'
+#        500:
+#          $ref: '#/components/responses/serverError'
+#      security:
+#        - jwt: []
+#  /jobs:
+#    get:
+#      summary: Get posted jobs
+#      description: |
+#        Use JWT token to find role of user and return a list of job applications
+#        if role is candidate it returns jobs in which candidate can apply and
+#        if role is placement officer then return all jos
+#      tags:
+#        - job
+#      parameters:
+#        - $ref: '#/components/parameters/Page'
+#        - $ref: '#/components/parameters/Elements'
+#      responses:
+#        200:
+#          description: Job applications received successfully
+#          content:
+#            application/json:
+#              schema:
+#                type: array
+#                items:
+#                  $ref: '#/components/schemas/job'
+#        404:
+#          $ref: '#/components/responses/4xxError'
+#        400:
+#          $ref: '#/components/responses/4xxError'
+#        500:
+#          $ref: '#/components/responses/serverError'
+#      security:
+#        - jwt: [ ]
+#  /job/apply:
+#    post:
+#      summary: Used for applying for a job
+#      description: Used by user having role Candidate to apply for a job
+#      tags:
+#        - job
+#      requestBody:
+#        required: true
+#        content:
+#          application/json:
+#            schema:
+#              type: object
+#              properties:
+#                id:
+#                  type: integer
+#                  description: ID of job
+#                  example: 22
+#      responses:
+#        201:
+#          description: Applied for job successfully
+#          content:
+#            application/json:
+#              schema:
+#                type: object
+#                properties:
+#                  id:
+#                    type: integer
+#                    description: Id of job in which candidate have applied
+#                    example: 11
+#                required:
+#                  - id
+#        404:
+#          $ref: '#/components/responses/notFound'
+#        400:
+#          $ref: '#/components/responses/badRequest'
+#        500:
+#          $ref: '#/components/responses/serverError'
+#      security:
+#        - jwt: [ ]
+#
+#
+#
+#components:
+#  responses:
+#    4xxError:
+#      description: 400 series error
+#      content:
+#        application/json:
+#          schema:
+#            type: object
+#            properties:
+#              message:
+#                type: string
+#                example: "user id is not found"
+#              resolution:
+#                type: string
+#                example: "give valid user id"
+#    serverError:
+#      description: Internal Server Error
+#      content:
+#        application/json:
+#          schema:
+#            type: object
+#            properties:
+#              message:
+#                type: string
+#                example: "server is currently facing an issue"
+#  parameters:
+#    Page:
+#      name: page
+#      in: query
+#      required: true
+#      description: Page number of which we have to give response
+#      schema:
+#        type: integer
+#        example: 12
+#    Elements:
+#      name: element
+#      in: query
+#      required: false
+#      description: Number of data element in one page
+#      schema:
+#        type: integer
+#        example: 20
+#  schemas:
+#    questionData:
+#      type: object
+#      properties:
+#        id:
+#          type: integer
+#          description: ID of question
+#          example: 12
+#        questioner:
+#          type: integer
+#          description: ID of questioner
+#          example: 23
+#        asked_at:
+#          type: string
+#          description: Date and time at which question was asked
+#          example: "2024-09-29 11:13:21.503688"
+#        question:
+#          type: string
+#          description: Question asked
+#          example: "watchGuard interview in which room?"
+#        response_status:
+#          type: string
+#          description: Status of question(pending, answered, refused)
+#          enum: [ "pending", "answered", "refused" ]
+#          example: "pending"
+#        answerer_id:
+#          type: integer
+#          description: ID of answerer
+#          example: 33
+#        answered_at:
+#          type: string
+#          description: Date and time at which question was answered
+#          example: "2024-09-29 11:13:21.503688"
+#        answer:
+#          type: string
+#          description: Question asked
+#          example: "watchGuard interview in which room?"
+#      required:
+#        - id
+#        - questioner_id
+#        - asked_at
+#        - question
+#        - response_status
+#        - answerer_id
+#        - answered_at
+#        - answer
+#    userAccount:
+#      type: object
+#      properties:
+#        id:
+#          type: integer
+#          example: 23
+#        username:
+#          type: string
+#          example: piyushyadu
+#        email:
+#          type: string
+#          example: piyush@gmail.com
+#        created_at:
+#          type: string
+#          example: 2024-09-29 11:10:57.786642
+#        first_name:
+#          type: string
+#          example: piyush
+#        last_name:
+#          type: string
+#          example: yadav
+#        approval_status:
+#          type: string
+#          example: pending
+#        role:
+#          type: string
+#          example: Candidate
+#      required:
+#        - id
+#        - username
+#        - email
+#        - created_at
+#        - first_name
+#        - last_name
+#        - approval_status
+#        - role
+#    job:
+#      type: object
+#      properties:
+#        id:
+#          type: integer
+#          description: ID of job
+#          example: 11
+#        posted_at:
+#          type: string
+#          description: date and time at which id was posted
+#          example: 2024-10-01 04:29:41.273660
+#        company_name:
+#          type: string
+#          example: watchGuard
+#        job_description:
+#          type: string
+#          example: sde role
+#        ctc:
+#          type: number
+#          example: 9.4
+#        applicable_degree:
+#          type: string
+#          description: Candidate having this degree can apply
+#          example: bachelor of technology
+#        applicable_branches:
+#          type: array
+#          description: Candidate having one of the branches can apply
+#          items:
+#            type: string
+#          example: ['computer science and engineering', 'mechanical engineering']
+#        total_round:
+#          type: integer
+#          example: 4
+#          description: Total number of rounds that will take place
+#        current_round:
+#          type: integer
+#          description: Which round is going on currently
+#          example: 1
+#        application_closed_on:
+#          type: string
+#          description: date and time on which application will be closed
+#          example: 2024-10-06 04:29:41.321536
+#      required:
+#        - id
+#        - posted_at
+#        - company_name
+#        - job_description
+#        - ctc
+#        - applicable_degree
+#        - applicable_branches
+#        - total_rounds
+#        - current_round
+#        - application_closed_on
+#  securitySchemes:
+#    jwt:
+#      type: http
+#      scheme: bearer
+#      bearerFormat: JWT

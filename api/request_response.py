@@ -1,6 +1,7 @@
-from pydantic import BaseModel, Field, field_validator
-from typing import Literal, Optional
+from pydantic import BaseModel, Field, field_validator, constr, conint
+from typing import Literal, Optional, List
 import datetime
+from constants import Patterns
 
 
 class UserData(BaseModel):
@@ -48,5 +49,46 @@ class QuestionDataResponse(BaseModel):
 
 
 class QuestionAnswerRequest(BaseModel):
-    id: int = Field(gt=0, le=10**8)
     answer: str = Field(min_length=1, max_length=10**4)
+
+
+class CreateJobRequest(BaseModel):
+    company_name: str = Field(pattern=Patterns.NAME, min_length=1, max_length=100)
+    job_description: str = Field(min_length=1, max_length=10**4)
+    ctc: float = Field(ge=0)
+    applicable_degree: str = Field(min_length=1, max_length=100)
+    applicable_branches: List[constr(min_length=1, max_length=50)]
+    total_round_count: int = Field(gt=0, lt=100)
+    application_closed_on: datetime.datetime
+
+    @field_validator('application_closed_on')
+    @classmethod
+    def validate_application_closed_on(cls, application_closed_on: datetime.datetime):
+        application_closed_on = application_closed_on.replace(tzinfo=datetime.timezone.utc)
+        if application_closed_on < datetime.datetime.now(datetime.UTC):
+            raise ValueError("Application Closing Date Time must be after current Date Time")
+        return application_closed_on
+
+
+class JobResponse(BaseModel):
+    id: int
+    posted_at: datetime.datetime
+    company_name: str
+    job_description: str
+    ctc: float
+    applicable_degree: str
+    applicable_branches: List[str]
+    total_round_count: int
+    current_round: int
+    application_closed_on: datetime.datetime
+
+
+class NextRoundRequest(BaseModel):
+    applicants_id_list: List[conint(gt=0, lt=10**8)]
+    message: str = Field(min_length=1, max_length=10**4)
+
+
+class NextRoundResponse(BaseModel):
+    job_id: int
+    selected_applicants_id: List[int]
+    message: str

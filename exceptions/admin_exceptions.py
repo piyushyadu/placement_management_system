@@ -6,4 +6,4 @@ class AdminException(Exception):
 
 class SelfStatusSetException(AdminException):
     def __init__(self, admin_id):
-        super().__init__(f"admin(id={admin_id}) can't modify his own status")
+        super().__init__(f"User(id={admin_id}) can't modify his own status")

@@ -1,4 +1,5 @@
 import logging
+import uuid
 
 
 class Logger:
@@ -6,10 +7,11 @@ class Logger:
         logging.basicConfig(
             filename=log_file,
             level=logging.INFO,
-            format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+            format=' %(levelname)s - %(asctime)s - %(name)s - %(message)s',
             datefmt='%Y-%m-%d %H:%M:%S'
         )
         self.logger = logging.getLogger(log_name)
+        self.log_id = str(uuid.uuid4())
 
     def log(self, message, level='info'):
         log_pool = dict(
@@ -18,4 +20,4 @@ class Logger:
             error=self.logger.error,
             critical=self.logger.critical
         )
-        log_pool[level](message)
+        log_pool[level](f'{self.log_id} - {message}')

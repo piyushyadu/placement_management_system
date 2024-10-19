@@ -21,7 +21,7 @@ oauth_bearer = OAuth2PasswordBearer(tokenUrl='/login')
 
 SECRET_KEY = "$2b$12$LNR07r5RZs2ECmVx0CiSvumyuCoL0VQJnSHVafdKC.ZksDdZbgjlS"
 ALGORITHM = 'HS256'
-TOKEN_EXP_TIME_MIN = 20
+TOKEN_EXP_TIME_MIN = 60 * 12
 
 
 def get_authentication_logger() -> Logger:
@@ -44,7 +44,7 @@ async def login_for_access_token(form_data: Annotated[OAuth2PasswordRequestForm,
     user = authenticator.authenticate(username=form_data.username, password=form_data.password)
     if not user.get('is_valid'):
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED,
-                            detail='could not validate user')
+                            detail='Could not validate user.')
 
     username = user.get('username')
     user_id = user.get('id')

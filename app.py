@@ -1,10 +1,11 @@
 from fastapi import FastAPI
 from database_layer.database import engine
 from database_layer import models
-from api.routes import create_account, authentication, candidate, approval, question
-from api.routes.authorization import RoleAuthorizationMiddleware
+from api.routes import create_account, authentication, account, question, job, authorization, message
 
-app = FastAPI()
+app = FastAPI(
+    openapi_prefix='/v1.0.0'
+)
 
 models.Base.metadata.create_all(bind=engine)
 
@@ -16,10 +17,11 @@ def health_check():
 
 app.include_router(create_account.router)
 app.include_router(authentication.router)
-app.include_router(candidate.router)
-app.include_router(approval.router)
+app.include_router(account.router)
 app.include_router(question.router)
-app.add_middleware(RoleAuthorizationMiddleware)
+app.include_router(job.router)
+app.include_router(message.router)
+app.add_middleware(authorization.RoleAuthorizationMiddleware)
 
 
 

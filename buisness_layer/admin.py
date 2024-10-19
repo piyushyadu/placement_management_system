@@ -12,24 +12,29 @@ class Admin:
         self.logger = logger
         self.user_id = user_id
 
-    def get_unapproved_accounts(self, offset_count: int, limit_count: int):
+    def get_unapproved_accounts(self,approval_status: str, offset_count: int, limit_count: int):
         try:
             users = (
                 self.db.query(models.User)
                 .order_by(desc(models.User.created_at))
-                .filter(models.User.approval_status == 'pending')
+                .filter(models.User.approval_status == approval_status)
                 .offset(offset_count)
                 .limit(limit_count)
                 .all()
             )
         except DatabaseFetchException as exception:
+            self.logger.log(
+                message='Unable to fetch data from db.',
+                level='error'
+            )
             raise exception
-
-        users_data = [user for user in users]
-        users_data = list(map(Admin.convert_orm_object_to_dict, users_data))
-        for user_data in users_data:
-            user_data.pop('hashed_password', None)
-        return users_data
+        else:
+            self.logger.log('Accounts are retrieved from db successfully.')
+            users_data = [user for user in users]
+            users_data = list(map(Admin.convert_orm_object_to_dict, users_data))
+            for user_data in users_data:
+                user_data.pop('hashed_password', None)
+            return users_data
 
     @staticmethod
     def convert_orm_object_to_dict(orm_object):
@@ -46,15 +51,20 @@ class Admin:
             raise exception
 
         if user is None:
-            raise UserNotFoundException(self.user_id)
+            raise UserNotFoundException(account_id)
         user.approval_status = approval_status
         try:
             self.db.add(user)
             self.db.commit()
         except DatabaseAddException as exception:
+            self.logger.log(
+                message='Unable to add data in db.',
+                level='error'
+            )
             self.db.rollback()
             raise exception
         else:
+            self.logger.log('Status is set in db successfully.')
             self.db.refresh(user)
             approved_user = dict(id=user.id,
                                  username=user.username,

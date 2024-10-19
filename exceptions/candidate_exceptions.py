@@ -28,3 +28,7 @@ class NotApplicableJobException(CandidateException):
     def __init__(self, user_id, job_id):
         super().__init__(f'user(id={user_id}) is not applicable of job({job_id})')
 
+
+class AlreadyAppliedJobException(CandidateException):
+    def __init__(self, user_id, job_id):
+        super().__init__(f'user(id={user_id}) has already applied for job({job_id})')

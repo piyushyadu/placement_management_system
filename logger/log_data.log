@@ -1,0 +1,265 @@
+ INFO - 2024-10-19 15:44:14 - 127.0.0.1:64298 - GET /docs - 1f8b663c-2bbc-4569-b8ee-f7164b64a964 - Request initiated.
+ INFO - 2024-10-19 15:44:14 - 127.0.0.1:64298 - GET /docs - 1f8b663c-2bbc-4569-b8ee-f7164b64a964 - Request don't required authorization.
+ INFO - 2024-10-19 15:44:14 - 127.0.0.1:64298 - GET /docs - 1f8b663c-2bbc-4569-b8ee-f7164b64a964 - Request sent to endpoint.
+ INFO - 2024-10-19 15:44:14 - 127.0.0.1:64298 - GET /docs - 1f8b663c-2bbc-4569-b8ee-f7164b64a964 - Response received from endpoint with status code = 200
+ INFO - 2024-10-19 15:44:14 - 127.0.0.1:64298 - GET /docs - 1f8b663c-2bbc-4569-b8ee-f7164b64a964 - Response received from endpoint
+ INFO - 2024-10-19 15:44:14 - 127.0.0.1:64298 - GET /docs - 1f8b663c-2bbc-4569-b8ee-f7164b64a964 - Time taken to process request by endpoint '0:00:00'.
+ INFO - 2024-10-19 15:44:14 - 127.0.0.1:64298 - GET /docs - 1f8b663c-2bbc-4569-b8ee-f7164b64a964 - Response is returned successfully.
+ INFO - 2024-10-19 15:44:14 - 127.0.0.1:64298 - GET /openapi.json - 616a9901-8ae9-485a-a2c0-6119aa87b945 - Request initiated.
+ INFO - 2024-10-19 15:44:14 - 127.0.0.1:64298 - GET /openapi.json - 616a9901-8ae9-485a-a2c0-6119aa87b945 - Request don't required authorization.
+ INFO - 2024-10-19 15:44:14 - 127.0.0.1:64298 - GET /openapi.json - 616a9901-8ae9-485a-a2c0-6119aa87b945 - Request sent to endpoint.
+ INFO - 2024-10-19 15:44:14 - 127.0.0.1:64298 - GET /openapi.json - 616a9901-8ae9-485a-a2c0-6119aa87b945 - Response received from endpoint with status code = 200
+ INFO - 2024-10-19 15:44:14 - 127.0.0.1:64298 - GET /openapi.json - 616a9901-8ae9-485a-a2c0-6119aa87b945 - Response received from endpoint
+ INFO - 2024-10-19 15:44:14 - 127.0.0.1:64298 - GET /openapi.json - 616a9901-8ae9-485a-a2c0-6119aa87b945 - Time taken to process request by endpoint '0:00:00.025279'.
+ INFO - 2024-10-19 15:44:14 - 127.0.0.1:64298 - GET /openapi.json - 616a9901-8ae9-485a-a2c0-6119aa87b945 - Response is returned successfully.
+ INFO - 2024-10-19 15:49:47 - 127.0.0.1:64350 - GET /docs - cd2e158c-c710-41d5-ad36-dbe106eaa2fe - Request initiated.
+ INFO - 2024-10-19 15:49:47 - 127.0.0.1:64350 - GET /docs - cd2e158c-c710-41d5-ad36-dbe106eaa2fe - Request don't required authorization.
+ INFO - 2024-10-19 15:49:47 - 127.0.0.1:64350 - GET /docs - cd2e158c-c710-41d5-ad36-dbe106eaa2fe - Request sent to endpoint.
+ INFO - 2024-10-19 15:49:47 - 127.0.0.1:64350 - GET /docs - cd2e158c-c710-41d5-ad36-dbe106eaa2fe - Response received from endpoint with status code = 200
+ INFO - 2024-10-19 15:49:47 - 127.0.0.1:64350 - GET /docs - cd2e158c-c710-41d5-ad36-dbe106eaa2fe - Response received from endpoint
+ INFO - 2024-10-19 15:49:47 - 127.0.0.1:64350 - GET /docs - cd2e158c-c710-41d5-ad36-dbe106eaa2fe - Time taken to process request by endpoint '0:00:00'.
+ INFO - 2024-10-19 15:49:47 - 127.0.0.1:64350 - GET /docs - cd2e158c-c710-41d5-ad36-dbe106eaa2fe - Response is returned successfully.
+ INFO - 2024-10-19 15:49:47 - 127.0.0.1:64350 - GET /openapi.json - 1c50d9ac-fd54-488e-9721-76d39227016b - Request initiated.
+ INFO - 2024-10-19 15:49:47 - 127.0.0.1:64350 - GET /openapi.json - 1c50d9ac-fd54-488e-9721-76d39227016b - Request don't required authorization.
+ INFO - 2024-10-19 15:49:47 - 127.0.0.1:64350 - GET /openapi.json - 1c50d9ac-fd54-488e-9721-76d39227016b - Request sent to endpoint.
+ INFO - 2024-10-19 15:49:47 - 127.0.0.1:64350 - GET /openapi.json - 1c50d9ac-fd54-488e-9721-76d39227016b - Response received from endpoint with status code = 200
+ INFO - 2024-10-19 15:49:47 - 127.0.0.1:64350 - GET /openapi.json - 1c50d9ac-fd54-488e-9721-76d39227016b - Response received from endpoint
+ INFO - 2024-10-19 15:49:47 - 127.0.0.1:64350 - GET /openapi.json - 1c50d9ac-fd54-488e-9721-76d39227016b - Time taken to process request by endpoint '0:00:00.017876'.
+ INFO - 2024-10-19 15:49:47 - 127.0.0.1:64350 - GET /openapi.json - 1c50d9ac-fd54-488e-9721-76d39227016b - Response is returned successfully.
+ INFO - 2024-10-19 15:51:16 - 127.0.0.1:64365 - GET /docs - 4791b382-fceb-4aa2-8129-e377bc61b00e - Request initiated.
+ INFO - 2024-10-19 15:51:16 - 127.0.0.1:64365 - GET /docs - 4791b382-fceb-4aa2-8129-e377bc61b00e - Request don't required authorization.
+ INFO - 2024-10-19 15:51:16 - 127.0.0.1:64365 - GET /docs - 4791b382-fceb-4aa2-8129-e377bc61b00e - Request sent to endpoint.
+ INFO - 2024-10-19 15:51:16 - 127.0.0.1:64365 - GET /docs - 4791b382-fceb-4aa2-8129-e377bc61b00e - Response received from endpoint with status code = 200
+ INFO - 2024-10-19 15:51:16 - 127.0.0.1:64365 - GET /docs - 4791b382-fceb-4aa2-8129-e377bc61b00e - Response received from endpoint
+ INFO - 2024-10-19 15:51:16 - 127.0.0.1:64365 - GET /docs - 4791b382-fceb-4aa2-8129-e377bc61b00e - Time taken to process request by endpoint '0:00:00'.
+ INFO - 2024-10-19 15:51:16 - 127.0.0.1:64365 - GET /docs - 4791b382-fceb-4aa2-8129-e377bc61b00e - Response is returned successfully.
+ INFO - 2024-10-19 15:51:16 - 127.0.0.1:64365 - GET /openapi.json - b853c03c-625e-47ee-8959-a065e8bc675a - Request initiated.
+ INFO - 2024-10-19 15:51:16 - 127.0.0.1:64365 - GET /openapi.json - b853c03c-625e-47ee-8959-a065e8bc675a - Request don't required authorization.
+ INFO - 2024-10-19 15:51:16 - 127.0.0.1:64365 - GET /openapi.json - b853c03c-625e-47ee-8959-a065e8bc675a - Request sent to endpoint.
+ INFO - 2024-10-19 15:51:16 - 127.0.0.1:64365 - GET /openapi.json - b853c03c-625e-47ee-8959-a065e8bc675a - Response received from endpoint with status code = 200
+ INFO - 2024-10-19 15:51:16 - 127.0.0.1:64365 - GET /openapi.json - b853c03c-625e-47ee-8959-a065e8bc675a - Response received from endpoint
+ INFO - 2024-10-19 15:51:16 - 127.0.0.1:64365 - GET /openapi.json - b853c03c-625e-47ee-8959-a065e8bc675a - Time taken to process request by endpoint '0:00:00.026491'.
+ INFO - 2024-10-19 15:51:16 - 127.0.0.1:64365 - GET /openapi.json - b853c03c-625e-47ee-8959-a065e8bc675a - Response is returned successfully.
+ INFO - 2024-10-19 15:53:24 - 127.0.0.1:64389 - GET /docs - e7fc20a9-1124-4b29-a6ca-8c2bab398aa5 - Request initiated.
+ INFO - 2024-10-19 15:53:24 - 127.0.0.1:64389 - GET /docs - e7fc20a9-1124-4b29-a6ca-8c2bab398aa5 - Request don't required authorization.
+ INFO - 2024-10-19 15:53:24 - 127.0.0.1:64389 - GET /docs - e7fc20a9-1124-4b29-a6ca-8c2bab398aa5 - Request sent to endpoint.
+ INFO - 2024-10-19 15:53:24 - 127.0.0.1:64389 - GET /docs - e7fc20a9-1124-4b29-a6ca-8c2bab398aa5 - Response received from endpoint with status code = 200
+ INFO - 2024-10-19 15:53:24 - 127.0.0.1:64389 - GET /docs - e7fc20a9-1124-4b29-a6ca-8c2bab398aa5 - Response received from endpoint
+ INFO - 2024-10-19 15:53:24 - 127.0.0.1:64389 - GET /docs - e7fc20a9-1124-4b29-a6ca-8c2bab398aa5 - Time taken to process request by endpoint '0:00:00.001007'.
+ INFO - 2024-10-19 15:53:24 - 127.0.0.1:64389 - GET /docs - e7fc20a9-1124-4b29-a6ca-8c2bab398aa5 - Response is returned successfully.
+ INFO - 2024-10-19 15:53:24 - 127.0.0.1:64389 - GET /openapi.json - 486e1fed-025a-40f4-90d6-ea096eecceb3 - Request initiated.
+ INFO - 2024-10-19 15:53:24 - 127.0.0.1:64389 - GET /openapi.json - 486e1fed-025a-40f4-90d6-ea096eecceb3 - Request don't required authorization.
+ INFO - 2024-10-19 15:53:24 - 127.0.0.1:64389 - GET /openapi.json - 486e1fed-025a-40f4-90d6-ea096eecceb3 - Request sent to endpoint.
+ INFO - 2024-10-19 15:53:24 - 127.0.0.1:64389 - GET /openapi.json - 486e1fed-025a-40f4-90d6-ea096eecceb3 - Response received from endpoint with status code = 200
+ INFO - 2024-10-19 15:53:24 - 127.0.0.1:64389 - GET /openapi.json - 486e1fed-025a-40f4-90d6-ea096eecceb3 - Response received from endpoint
+ INFO - 2024-10-19 15:53:24 - 127.0.0.1:64389 - GET /openapi.json - 486e1fed-025a-40f4-90d6-ea096eecceb3 - Time taken to process request by endpoint '0:00:00.000999'.
+ INFO - 2024-10-19 15:53:24 - 127.0.0.1:64389 - GET /openapi.json - 486e1fed-025a-40f4-90d6-ea096eecceb3 - Response is returned successfully.
+ INFO - 2024-10-19 15:54:14 - 127.0.0.1:64406 - GET /docs - e3c23de6-5dd2-4e6e-9994-9e1ea0d9d78f - Request initiated.
+ INFO - 2024-10-19 15:54:14 - 127.0.0.1:64406 - GET /docs - e3c23de6-5dd2-4e6e-9994-9e1ea0d9d78f - Request don't required authorization.
+ INFO - 2024-10-19 15:54:14 - 127.0.0.1:64406 - GET /docs - e3c23de6-5dd2-4e6e-9994-9e1ea0d9d78f - Request sent to endpoint.
+ INFO - 2024-10-19 15:54:14 - 127.0.0.1:64406 - GET /docs - e3c23de6-5dd2-4e6e-9994-9e1ea0d9d78f - Response received from endpoint with status code = 200
+ INFO - 2024-10-19 15:54:14 - 127.0.0.1:64406 - GET /docs - e3c23de6-5dd2-4e6e-9994-9e1ea0d9d78f - Response received from endpoint
+ INFO - 2024-10-19 15:54:14 - 127.0.0.1:64406 - GET /docs - e3c23de6-5dd2-4e6e-9994-9e1ea0d9d78f - Time taken to process request by endpoint '0:00:00.004068'.
+ INFO - 2024-10-19 15:54:14 - 127.0.0.1:64406 - GET /docs - e3c23de6-5dd2-4e6e-9994-9e1ea0d9d78f - Response is returned successfully.
+ INFO - 2024-10-19 15:54:14 - 127.0.0.1:64406 - GET /openapi.json - 4a032ae2-c3fb-4f30-91fe-d29867a0bba0 - Request initiated.
+ INFO - 2024-10-19 15:54:14 - 127.0.0.1:64406 - GET /openapi.json - 4a032ae2-c3fb-4f30-91fe-d29867a0bba0 - Request don't required authorization.
+ INFO - 2024-10-19 15:54:14 - 127.0.0.1:64406 - GET /openapi.json - 4a032ae2-c3fb-4f30-91fe-d29867a0bba0 - Request sent to endpoint.
+ INFO - 2024-10-19 15:54:14 - 127.0.0.1:64406 - GET /openapi.json - 4a032ae2-c3fb-4f30-91fe-d29867a0bba0 - Response received from endpoint with status code = 200
+ INFO - 2024-10-19 15:54:14 - 127.0.0.1:64406 - GET /openapi.json - 4a032ae2-c3fb-4f30-91fe-d29867a0bba0 - Response received from endpoint
+ INFO - 2024-10-19 15:54:14 - 127.0.0.1:64406 - GET /openapi.json - 4a032ae2-c3fb-4f30-91fe-d29867a0bba0 - Time taken to process request by endpoint '0:00:00.014150'.
+ INFO - 2024-10-19 15:54:14 - 127.0.0.1:64406 - GET /openapi.json - 4a032ae2-c3fb-4f30-91fe-d29867a0bba0 - Response is returned successfully.
+ INFO - 2024-10-19 16:19:37 - 127.0.0.1:64684 - GET /messages - 293f282a-58d6-4191-b56d-3c99a76c4a15 - Request initiated.
+ INFO - 2024-10-19 16:19:37 - 127.0.0.1:64684 - GET /messages - 293f282a-58d6-4191-b56d-3c99a76c4a15 - Request require authorization.
+ INFO - 2024-10-19 16:19:37 - 127.0.0.1:64684 - GET /messages - 293f282a-58d6-4191-b56d-3c99a76c4a15 - Authorization successful.
+ INFO - 2024-10-19 16:19:37 - 127.0.0.1:64684 - GET /messages - 293f282a-58d6-4191-b56d-3c99a76c4a15 - User id is '17' and role is 'candidate'
+ INFO - 2024-10-19 16:19:37 - 127.0.0.1:64684 - GET /messages - 293f282a-58d6-4191-b56d-3c99a76c4a15 - Request sent to endpoint.
+ INFO - 2024-10-19 16:19:37 - 127.0.0.1:64684 - GET /messages - 293f282a-58d6-4191-b56d-3c99a76c4a15 - Response received from endpoint with status code = 500
+ INFO - 2024-10-19 16:19:37 - 127.0.0.1:64684 - GET /messages - 293f282a-58d6-4191-b56d-3c99a76c4a15 - Response received from endpoint
+ INFO - 2024-10-19 16:19:37 - 127.0.0.1:64684 - GET /messages - 293f282a-58d6-4191-b56d-3c99a76c4a15 - Time taken to process request by endpoint '0:00:00.021018'.
+ INFO - 2024-10-19 16:19:37 - 127.0.0.1:64684 - GET /messages - 293f282a-58d6-4191-b56d-3c99a76c4a15 - Response is returned successfully.
+ INFO - 2024-10-19 16:20:33 - 127.0.0.1:64697 - GET /messages - f14e5269-dd4d-4b3a-920d-fe67f6312aa9 - Request initiated.
+ INFO - 2024-10-19 16:20:33 - 127.0.0.1:64697 - GET /messages - f14e5269-dd4d-4b3a-920d-fe67f6312aa9 - Request require authorization.
+ INFO - 2024-10-19 16:20:33 - 127.0.0.1:64697 - GET /messages - f14e5269-dd4d-4b3a-920d-fe67f6312aa9 - Authorization successful.
+ INFO - 2024-10-19 16:20:33 - 127.0.0.1:64697 - GET /messages - f14e5269-dd4d-4b3a-920d-fe67f6312aa9 - User id is '17' and role is 'candidate'
+ INFO - 2024-10-19 16:20:33 - 127.0.0.1:64697 - GET /messages - f14e5269-dd4d-4b3a-920d-fe67f6312aa9 - Request sent to endpoint.
+ INFO - 2024-10-19 16:20:33 - 127.0.0.1:64697 - GET /messages - f14e5269-dd4d-4b3a-920d-fe67f6312aa9 - Response is returned successfully.
+ INFO - 2024-10-19 16:24:08 - 127.0.0.1:64727 - GET /messages - 3bc7d6f2-b3a8-4fb2-b546-976b18da9d71 - Request initiated.
+ INFO - 2024-10-19 16:24:08 - 127.0.0.1:64727 - GET /messages - 3bc7d6f2-b3a8-4fb2-b546-976b18da9d71 - Request require authorization.
+ INFO - 2024-10-19 16:24:08 - 127.0.0.1:64727 - GET /messages - 3bc7d6f2-b3a8-4fb2-b546-976b18da9d71 - Authorization successful.
+ INFO - 2024-10-19 16:24:08 - 127.0.0.1:64727 - GET /messages - 3bc7d6f2-b3a8-4fb2-b546-976b18da9d71 - User id is '17' and role is 'candidate'
+ INFO - 2024-10-19 16:24:08 - 127.0.0.1:64727 - GET /messages - 3bc7d6f2-b3a8-4fb2-b546-976b18da9d71 - Request sent to endpoint.
+ INFO - 2024-10-19 16:24:08 - 127.0.0.1:64727 - GET /messages - 3bc7d6f2-b3a8-4fb2-b546-976b18da9d71 - Response received from endpoint with status code = 200
+ INFO - 2024-10-19 16:24:08 - 127.0.0.1:64727 - GET /messages - 3bc7d6f2-b3a8-4fb2-b546-976b18da9d71 - Response received from endpoint
+ INFO - 2024-10-19 16:24:08 - 127.0.0.1:64727 - GET /messages - 3bc7d6f2-b3a8-4fb2-b546-976b18da9d71 - Time taken to process request by endpoint '0:00:00.033367'.
+ INFO - 2024-10-19 16:24:08 - 127.0.0.1:64727 - GET /messages - 3bc7d6f2-b3a8-4fb2-b546-976b18da9d71 - Response is returned successfully.
+ INFO - 2024-10-19 16:24:10 - 127.0.0.1:64727 - GET /messages - eba32044-0aa7-49c8-b8a4-bfa4ff3b24cf - Request initiated.
+ INFO - 2024-10-19 16:24:10 - 127.0.0.1:64727 - GET /messages - eba32044-0aa7-49c8-b8a4-bfa4ff3b24cf - Request require authorization.
+ INFO - 2024-10-19 16:24:10 - 127.0.0.1:64727 - GET /messages - eba32044-0aa7-49c8-b8a4-bfa4ff3b24cf - Authorization successful.
+ INFO - 2024-10-19 16:24:10 - 127.0.0.1:64727 - GET /messages - eba32044-0aa7-49c8-b8a4-bfa4ff3b24cf - User id is '17' and role is 'candidate'
+ INFO - 2024-10-19 16:24:10 - 127.0.0.1:64727 - GET /messages - eba32044-0aa7-49c8-b8a4-bfa4ff3b24cf - Request sent to endpoint.
+ INFO - 2024-10-19 16:24:10 - 127.0.0.1:64727 - GET /messages - eba32044-0aa7-49c8-b8a4-bfa4ff3b24cf - Response received from endpoint with status code = 200
+ INFO - 2024-10-19 16:24:10 - 127.0.0.1:64727 - GET /messages - eba32044-0aa7-49c8-b8a4-bfa4ff3b24cf - Response received from endpoint
+ INFO - 2024-10-19 16:24:10 - 127.0.0.1:64727 - GET /messages - eba32044-0aa7-49c8-b8a4-bfa4ff3b24cf - Time taken to process request by endpoint '0:00:00.003012'.
+ INFO - 2024-10-19 16:24:10 - 127.0.0.1:64727 - GET /messages - eba32044-0aa7-49c8-b8a4-bfa4ff3b24cf - Response is returned successfully.
+ INFO - 2024-10-19 16:24:58 - 127.0.0.1:64742 - GET /messages - a2963d9d-70a2-4b80-8f82-376122f032ba - Request initiated.
+ INFO - 2024-10-19 16:24:58 - 127.0.0.1:64742 - GET /messages - a2963d9d-70a2-4b80-8f82-376122f032ba - Request require authorization.
+ INFO - 2024-10-19 16:24:58 - 127.0.0.1:64742 - GET /messages - a2963d9d-70a2-4b80-8f82-376122f032ba - Authorization successful.
+ INFO - 2024-10-19 16:24:58 - 127.0.0.1:64742 - GET /messages - a2963d9d-70a2-4b80-8f82-376122f032ba - User id is '17' and role is 'candidate'
+ INFO - 2024-10-19 16:24:58 - 127.0.0.1:64742 - GET /messages - a2963d9d-70a2-4b80-8f82-376122f032ba - Request sent to endpoint.
+ INFO - 2024-10-19 16:24:58 - 127.0.0.1:64742 - GET /messages - a2963d9d-70a2-4b80-8f82-376122f032ba - Response received from endpoint with status code = 200
+ INFO - 2024-10-19 16:24:58 - 127.0.0.1:64742 - GET /messages - a2963d9d-70a2-4b80-8f82-376122f032ba - Response received from endpoint
+ INFO - 2024-10-19 16:24:58 - 127.0.0.1:64742 - GET /messages - a2963d9d-70a2-4b80-8f82-376122f032ba - Time taken to process request by endpoint '0:00:00.031761'.
+ INFO - 2024-10-19 16:24:58 - 127.0.0.1:64742 - GET /messages - a2963d9d-70a2-4b80-8f82-376122f032ba - Response is returned successfully.
+ INFO - 2024-10-19 16:24:59 - 127.0.0.1:64742 - GET /messages - 6878e1a4-a6bb-4178-99e4-424208d53f4d - Request initiated.
+ INFO - 2024-10-19 16:24:59 - 127.0.0.1:64742 - GET /messages - 6878e1a4-a6bb-4178-99e4-424208d53f4d - Request require authorization.
+ INFO - 2024-10-19 16:24:59 - 127.0.0.1:64742 - GET /messages - 6878e1a4-a6bb-4178-99e4-424208d53f4d - Authorization successful.
+ INFO - 2024-10-19 16:24:59 - 127.0.0.1:64742 - GET /messages - 6878e1a4-a6bb-4178-99e4-424208d53f4d - User id is '17' and role is 'candidate'
+ INFO - 2024-10-19 16:24:59 - 127.0.0.1:64742 - GET /messages - 6878e1a4-a6bb-4178-99e4-424208d53f4d - Request sent to endpoint.
+ INFO - 2024-10-19 16:24:59 - 127.0.0.1:64742 - GET /messages - 6878e1a4-a6bb-4178-99e4-424208d53f4d - Response received from endpoint with status code = 200
+ INFO - 2024-10-19 16:24:59 - 127.0.0.1:64742 - GET /messages - 6878e1a4-a6bb-4178-99e4-424208d53f4d - Response received from endpoint
+ INFO - 2024-10-19 16:24:59 - 127.0.0.1:64742 - GET /messages - 6878e1a4-a6bb-4178-99e4-424208d53f4d - Time taken to process request by endpoint '0:00:00.011473'.
+ INFO - 2024-10-19 16:24:59 - 127.0.0.1:64742 - GET /messages - 6878e1a4-a6bb-4178-99e4-424208d53f4d - Response is returned successfully.
+ INFO - 2024-10-19 16:25:48 - 127.0.0.1:64750 - GET /login - fce66a36-d54a-4199-9396-a05c8c739f30 - Request initiated.
+ INFO - 2024-10-19 16:25:48 - 127.0.0.1:64750 - GET /login - fce66a36-d54a-4199-9396-a05c8c739f30 - Request don't required authorization.
+ INFO - 2024-10-19 16:25:48 - 127.0.0.1:64750 - GET /login - fce66a36-d54a-4199-9396-a05c8c739f30 - Request sent to endpoint.
+ INFO - 2024-10-19 16:25:48 - 127.0.0.1:64750 - GET /login - fce66a36-d54a-4199-9396-a05c8c739f30 - Response received from endpoint with status code = 401
+ INFO - 2024-10-19 16:25:48 - 127.0.0.1:64750 - GET /login - fce66a36-d54a-4199-9396-a05c8c739f30 - Response received from endpoint
+ INFO - 2024-10-19 16:25:48 - 127.0.0.1:64750 - GET /login - fce66a36-d54a-4199-9396-a05c8c739f30 - Time taken to process request by endpoint '0:00:00.006262'.
+ INFO - 2024-10-19 16:25:48 - 127.0.0.1:64750 - GET /login - fce66a36-d54a-4199-9396-a05c8c739f30 - Response is returned successfully.
+ INFO - 2024-10-19 16:26:12 - 127.0.0.1:64756 - GET /login - b55f50e1-a9da-4ff7-a7ee-0cf2f8df4ee4 - Request initiated.
+ INFO - 2024-10-19 16:26:12 - 127.0.0.1:64756 - GET /login - b55f50e1-a9da-4ff7-a7ee-0cf2f8df4ee4 - Request don't required authorization.
+ INFO - 2024-10-19 16:26:12 - 127.0.0.1:64756 - GET /login - b55f50e1-a9da-4ff7-a7ee-0cf2f8df4ee4 - Request sent to endpoint.
+ INFO - 2024-10-19 16:26:12 - 127.0.0.1:64756 - GET /login - b55f50e1-a9da-4ff7-a7ee-0cf2f8df4ee4 - Response received from endpoint with status code = 401
+ INFO - 2024-10-19 16:26:12 - 127.0.0.1:64756 - GET /login - b55f50e1-a9da-4ff7-a7ee-0cf2f8df4ee4 - Response received from endpoint
+ INFO - 2024-10-19 16:26:12 - 127.0.0.1:64756 - GET /login - b55f50e1-a9da-4ff7-a7ee-0cf2f8df4ee4 - Time taken to process request by endpoint '0:00:00.003113'.
+ INFO - 2024-10-19 16:26:12 - 127.0.0.1:64756 - GET /login - b55f50e1-a9da-4ff7-a7ee-0cf2f8df4ee4 - Response is returned successfully.
+ INFO - 2024-10-19 16:26:46 - 127.0.0.1:64766 - GET /login - 0c3dad48-24bb-4bda-bc7d-e1e440477215 - Request initiated.
+ INFO - 2024-10-19 16:26:46 - 127.0.0.1:64766 - GET /login - 0c3dad48-24bb-4bda-bc7d-e1e440477215 - Request don't required authorization.
+ INFO - 2024-10-19 16:26:46 - 127.0.0.1:64766 - GET /login - 0c3dad48-24bb-4bda-bc7d-e1e440477215 - Request sent to endpoint.
+ INFO - 2024-10-19 16:26:46 - 127.0.0.1:64766 - GET /login - 0c3dad48-24bb-4bda-bc7d-e1e440477215 - Response received from endpoint with status code = 200
+ INFO - 2024-10-19 16:26:46 - 127.0.0.1:64766 - GET /login - 0c3dad48-24bb-4bda-bc7d-e1e440477215 - Response received from endpoint
+ INFO - 2024-10-19 16:26:46 - 127.0.0.1:64766 - GET /login - 0c3dad48-24bb-4bda-bc7d-e1e440477215 - Time taken to process request by endpoint '0:00:00.251408'.
+ INFO - 2024-10-19 16:26:46 - 127.0.0.1:64766 - GET /login - 0c3dad48-24bb-4bda-bc7d-e1e440477215 - Response is returned successfully.
+ INFO - 2024-10-19 16:27:05 - 127.0.0.1:64768 - GET /messages - 2a2135bc-a869-4851-a8eb-1f0797e618bb - Request initiated.
+ INFO - 2024-10-19 16:27:05 - 127.0.0.1:64768 - GET /messages - 2a2135bc-a869-4851-a8eb-1f0797e618bb - Request require authorization.
+ INFO - 2024-10-19 16:27:05 - 127.0.0.1:64768 - GET /messages - 2a2135bc-a869-4851-a8eb-1f0797e618bb - Authorization successful.
+ INFO - 2024-10-19 16:27:05 - 127.0.0.1:64768 - GET /messages - 2a2135bc-a869-4851-a8eb-1f0797e618bb - User id is '14' and role is 'candidate'
+ INFO - 2024-10-19 16:27:05 - 127.0.0.1:64768 - GET /messages - 2a2135bc-a869-4851-a8eb-1f0797e618bb - Request sent to endpoint.
+ INFO - 2024-10-19 16:27:05 - 127.0.0.1:64768 - GET /messages - 2a2135bc-a869-4851-a8eb-1f0797e618bb - Response received from endpoint with status code = 200
+ INFO - 2024-10-19 16:27:05 - 127.0.0.1:64768 - GET /messages - 2a2135bc-a869-4851-a8eb-1f0797e618bb - Response received from endpoint
+ INFO - 2024-10-19 16:27:05 - 127.0.0.1:64768 - GET /messages - 2a2135bc-a869-4851-a8eb-1f0797e618bb - Time taken to process request by endpoint '0:00:00.003977'.
+ INFO - 2024-10-19 16:27:05 - 127.0.0.1:64768 - GET /messages - 2a2135bc-a869-4851-a8eb-1f0797e618bb - Response is returned successfully.
+ INFO - 2024-10-19 16:27:21 - 127.0.0.1:64774 - GET /messages - d4be0b8a-f46e-4ba0-8e4a-f2807111cb6c - Request initiated.
+ INFO - 2024-10-19 16:27:21 - 127.0.0.1:64774 - GET /messages - d4be0b8a-f46e-4ba0-8e4a-f2807111cb6c - Request require authorization.
+ INFO - 2024-10-19 16:27:21 - 127.0.0.1:64774 - GET /messages - d4be0b8a-f46e-4ba0-8e4a-f2807111cb6c - Authorization successful.
+ INFO - 2024-10-19 16:27:21 - 127.0.0.1:64774 - GET /messages - d4be0b8a-f46e-4ba0-8e4a-f2807111cb6c - User id is '14' and role is 'candidate'
+ INFO - 2024-10-19 16:27:21 - 127.0.0.1:64774 - GET /messages - d4be0b8a-f46e-4ba0-8e4a-f2807111cb6c - Request sent to endpoint.
+ INFO - 2024-10-19 16:27:21 - 127.0.0.1:64774 - GET /messages - d4be0b8a-f46e-4ba0-8e4a-f2807111cb6c - Response received from endpoint with status code = 200
+ INFO - 2024-10-19 16:27:21 - 127.0.0.1:64774 - GET /messages - d4be0b8a-f46e-4ba0-8e4a-f2807111cb6c - Response received from endpoint
+ INFO - 2024-10-19 16:27:21 - 127.0.0.1:64774 - GET /messages - d4be0b8a-f46e-4ba0-8e4a-f2807111cb6c - Time taken to process request by endpoint '0:00:00.006693'.
+ INFO - 2024-10-19 16:27:21 - 127.0.0.1:64774 - GET /messages - d4be0b8a-f46e-4ba0-8e4a-f2807111cb6c - Response is returned successfully.
+ INFO - 2024-10-19 16:34:38 - 127.0.0.1:64859 - GET / - 89faac1d-7a76-40ea-8c8f-343367a4ab50 - Request initiated.
+ INFO - 2024-10-19 16:34:38 - 127.0.0.1:64859 - GET / - 89faac1d-7a76-40ea-8c8f-343367a4ab50 - Request don't required authorization.
+ INFO - 2024-10-19 16:34:38 - 127.0.0.1:64859 - GET / - 89faac1d-7a76-40ea-8c8f-343367a4ab50 - Request sent to endpoint.
+ INFO - 2024-10-19 16:34:38 - 127.0.0.1:64859 - GET / - 89faac1d-7a76-40ea-8c8f-343367a4ab50 - Response received from endpoint with status code = 404
+ INFO - 2024-10-19 16:34:38 - 127.0.0.1:64859 - GET / - 89faac1d-7a76-40ea-8c8f-343367a4ab50 - Response received from endpoint
+ INFO - 2024-10-19 16:34:38 - 127.0.0.1:64859 - GET / - 89faac1d-7a76-40ea-8c8f-343367a4ab50 - Time taken to process request by endpoint '0:00:00.001004'.
+ INFO - 2024-10-19 16:34:38 - 127.0.0.1:64859 - GET / - 89faac1d-7a76-40ea-8c8f-343367a4ab50 - Response is returned successfully.
+ INFO - 2024-10-19 16:34:42 - 127.0.0.1:64859 - GET /docs - 17e4ede7-fc7c-4686-b26a-fc68a2a68446 - Request initiated.
+ INFO - 2024-10-19 16:34:42 - 127.0.0.1:64859 - GET /docs - 17e4ede7-fc7c-4686-b26a-fc68a2a68446 - Request don't required authorization.
+ INFO - 2024-10-19 16:34:42 - 127.0.0.1:64859 - GET /docs - 17e4ede7-fc7c-4686-b26a-fc68a2a68446 - Request sent to endpoint.
+ INFO - 2024-10-19 16:34:42 - 127.0.0.1:64859 - GET /docs - 17e4ede7-fc7c-4686-b26a-fc68a2a68446 - Response received from endpoint with status code = 200
+ INFO - 2024-10-19 16:34:42 - 127.0.0.1:64859 - GET /docs - 17e4ede7-fc7c-4686-b26a-fc68a2a68446 - Response received from endpoint
+ INFO - 2024-10-19 16:34:42 - 127.0.0.1:64859 - GET /docs - 17e4ede7-fc7c-4686-b26a-fc68a2a68446 - Time taken to process request by endpoint '0:00:00.001027'.
+ INFO - 2024-10-19 16:34:42 - 127.0.0.1:64859 - GET /docs - 17e4ede7-fc7c-4686-b26a-fc68a2a68446 - Response is returned successfully.
+ INFO - 2024-10-19 16:34:42 - 127.0.0.1:64859 - GET /openapi.json - 652c3fd7-8e29-43d3-b929-7fdc7556e0b3 - Request initiated.
+ INFO - 2024-10-19 16:34:42 - 127.0.0.1:64859 - GET /openapi.json - 652c3fd7-8e29-43d3-b929-7fdc7556e0b3 - Request don't required authorization.
+ INFO - 2024-10-19 16:34:42 - 127.0.0.1:64859 - GET /openapi.json - 652c3fd7-8e29-43d3-b929-7fdc7556e0b3 - Request sent to endpoint.
+ INFO - 2024-10-19 16:34:43 - 127.0.0.1:64859 - GET /openapi.json - 652c3fd7-8e29-43d3-b929-7fdc7556e0b3 - Response received from endpoint with status code = 200
+ INFO - 2024-10-19 16:34:43 - 127.0.0.1:64859 - GET /openapi.json - 652c3fd7-8e29-43d3-b929-7fdc7556e0b3 - Response received from endpoint
+ INFO - 2024-10-19 16:34:43 - 127.0.0.1:64859 - GET /openapi.json - 652c3fd7-8e29-43d3-b929-7fdc7556e0b3 - Time taken to process request by endpoint '0:00:00.032470'.
+ INFO - 2024-10-19 16:34:43 - 127.0.0.1:64859 - GET /openapi.json - 652c3fd7-8e29-43d3-b929-7fdc7556e0b3 - Response is returned successfully.
+ INFO - 2024-10-19 16:34:54 - 127.0.0.1:64860 - GET /docs - 79459359-8e54-41a1-8378-2624b22e5741 - Request initiated.
+ INFO - 2024-10-19 16:34:54 - 127.0.0.1:64860 - GET /docs - 79459359-8e54-41a1-8378-2624b22e5741 - Request don't required authorization.
+ INFO - 2024-10-19 16:34:54 - 127.0.0.1:64860 - GET /docs - 79459359-8e54-41a1-8378-2624b22e5741 - Request sent to endpoint.
+ INFO - 2024-10-19 16:34:54 - 127.0.0.1:64860 - GET /docs - 79459359-8e54-41a1-8378-2624b22e5741 - Response received from endpoint with status code = 200
+ INFO - 2024-10-19 16:34:54 - 127.0.0.1:64860 - GET /docs - 79459359-8e54-41a1-8378-2624b22e5741 - Response received from endpoint
+ INFO - 2024-10-19 16:34:54 - 127.0.0.1:64860 - GET /docs - 79459359-8e54-41a1-8378-2624b22e5741 - Time taken to process request by endpoint '0:00:00.000511'.
+ INFO - 2024-10-19 16:34:54 - 127.0.0.1:64860 - GET /docs - 79459359-8e54-41a1-8378-2624b22e5741 - Response is returned successfully.
+ INFO - 2024-10-19 16:34:54 - 127.0.0.1:64860 - GET /openapi.json - 1bda6a19-4abb-46e7-8f4b-182f4ddc9fb8 - Request initiated.
+ INFO - 2024-10-19 16:34:54 - 127.0.0.1:64860 - GET /openapi.json - 1bda6a19-4abb-46e7-8f4b-182f4ddc9fb8 - Request don't required authorization.
+ INFO - 2024-10-19 16:34:54 - 127.0.0.1:64860 - GET /openapi.json - 1bda6a19-4abb-46e7-8f4b-182f4ddc9fb8 - Request sent to endpoint.
+ INFO - 2024-10-19 16:34:54 - 127.0.0.1:64860 - GET /openapi.json - 1bda6a19-4abb-46e7-8f4b-182f4ddc9fb8 - Response received from endpoint with status code = 200
+ INFO - 2024-10-19 16:34:54 - 127.0.0.1:64860 - GET /openapi.json - 1bda6a19-4abb-46e7-8f4b-182f4ddc9fb8 - Response received from endpoint
+ INFO - 2024-10-19 16:34:54 - 127.0.0.1:64860 - GET /openapi.json - 1bda6a19-4abb-46e7-8f4b-182f4ddc9fb8 - Time taken to process request by endpoint '0:00:00'.
+ INFO - 2024-10-19 16:34:54 - 127.0.0.1:64860 - GET /openapi.json - 1bda6a19-4abb-46e7-8f4b-182f4ddc9fb8 - Response is returned successfully.
+ INFO - 2024-10-19 16:35:32 - 127.0.0.1:64921 - GET /docs - aa80282a-45e9-43dd-9f73-d1368ff2bd1c - Request initiated.
+ INFO - 2024-10-19 16:35:32 - 127.0.0.1:64921 - GET /docs - aa80282a-45e9-43dd-9f73-d1368ff2bd1c - Request don't required authorization.
+ INFO - 2024-10-19 16:35:32 - 127.0.0.1:64921 - GET /docs - aa80282a-45e9-43dd-9f73-d1368ff2bd1c - Request sent to endpoint.
+ INFO - 2024-10-19 16:35:32 - 127.0.0.1:64921 - GET /docs - aa80282a-45e9-43dd-9f73-d1368ff2bd1c - Response received from endpoint with status code = 200
+ INFO - 2024-10-19 16:35:32 - 127.0.0.1:64921 - GET /docs - aa80282a-45e9-43dd-9f73-d1368ff2bd1c - Response received from endpoint
+ INFO - 2024-10-19 16:35:32 - 127.0.0.1:64921 - GET /docs - aa80282a-45e9-43dd-9f73-d1368ff2bd1c - Time taken to process request by endpoint '0:00:00.001000'.
+ INFO - 2024-10-19 16:35:32 - 127.0.0.1:64921 - GET /docs - aa80282a-45e9-43dd-9f73-d1368ff2bd1c - Response is returned successfully.
+ INFO - 2024-10-19 16:35:32 - 127.0.0.1:64921 - GET /openapi.json - 7312d799-8707-4bf5-8030-0f5a7fd3073d - Request initiated.
+ INFO - 2024-10-19 16:35:32 - 127.0.0.1:64921 - GET /openapi.json - 7312d799-8707-4bf5-8030-0f5a7fd3073d - Request don't required authorization.
+ INFO - 2024-10-19 16:35:32 - 127.0.0.1:64921 - GET /openapi.json - 7312d799-8707-4bf5-8030-0f5a7fd3073d - Request sent to endpoint.
+ INFO - 2024-10-19 16:35:32 - 127.0.0.1:64921 - GET /openapi.json - 7312d799-8707-4bf5-8030-0f5a7fd3073d - Response received from endpoint with status code = 200
+ INFO - 2024-10-19 16:35:32 - 127.0.0.1:64921 - GET /openapi.json - 7312d799-8707-4bf5-8030-0f5a7fd3073d - Response received from endpoint
+ INFO - 2024-10-19 16:35:32 - 127.0.0.1:64921 - GET /openapi.json - 7312d799-8707-4bf5-8030-0f5a7fd3073d - Time taken to process request by endpoint '0:00:00.028746'.
+ INFO - 2024-10-19 16:35:32 - 127.0.0.1:64921 - GET /openapi.json - 7312d799-8707-4bf5-8030-0f5a7fd3073d - Response is returned successfully.
+ INFO - 2024-10-20 00:06:12 - 127.0.0.1:52208 - GET /docs - 32a2fd51-35c7-4cdb-9696-92df55443407 - Request initiated.
+ INFO - 2024-10-20 00:06:12 - 127.0.0.1:52208 - GET /docs - 32a2fd51-35c7-4cdb-9696-92df55443407 - Request don't required authorization.
+ INFO - 2024-10-20 00:06:12 - 127.0.0.1:52208 - GET /docs - 32a2fd51-35c7-4cdb-9696-92df55443407 - Request sent to endpoint.
+ INFO - 2024-10-20 00:06:12 - 127.0.0.1:52208 - GET /docs - 32a2fd51-35c7-4cdb-9696-92df55443407 - Response received from endpoint with status code = 200
+ INFO - 2024-10-20 00:06:12 - 127.0.0.1:52208 - GET /docs - 32a2fd51-35c7-4cdb-9696-92df55443407 - Response received from endpoint
+ INFO - 2024-10-20 00:06:12 - 127.0.0.1:52208 - GET /docs - 32a2fd51-35c7-4cdb-9696-92df55443407 - Time taken to process request by endpoint '0:00:00.001001'.
+ INFO - 2024-10-20 00:06:12 - 127.0.0.1:52208 - GET /docs - 32a2fd51-35c7-4cdb-9696-92df55443407 - Response is returned successfully.
+ INFO - 2024-10-20 00:06:12 - 127.0.0.1:52208 - GET /v1.0.0/openapi.json - 73efe16f-89a8-47f6-9566-8a6aff9f64fa - Request initiated.
+ INFO - 2024-10-20 00:06:12 - 127.0.0.1:52208 - GET /v1.0.0/openapi.json - 73efe16f-89a8-47f6-9566-8a6aff9f64fa - Request don't required authorization.
+ INFO - 2024-10-20 00:06:12 - 127.0.0.1:52208 - GET /v1.0.0/openapi.json - 73efe16f-89a8-47f6-9566-8a6aff9f64fa - Request sent to endpoint.
+ INFO - 2024-10-20 00:06:12 - 127.0.0.1:52208 - GET /v1.0.0/openapi.json - 73efe16f-89a8-47f6-9566-8a6aff9f64fa - Response received from endpoint with status code = 200
+ INFO - 2024-10-20 00:06:12 - 127.0.0.1:52208 - GET /v1.0.0/openapi.json - 73efe16f-89a8-47f6-9566-8a6aff9f64fa - Response received from endpoint
+ INFO - 2024-10-20 00:06:12 - 127.0.0.1:52208 - GET /v1.0.0/openapi.json - 73efe16f-89a8-47f6-9566-8a6aff9f64fa - Time taken to process request by endpoint '0:00:00.038425'.
+ INFO - 2024-10-20 00:06:12 - 127.0.0.1:52208 - GET /v1.0.0/openapi.json - 73efe16f-89a8-47f6-9566-8a6aff9f64fa - Response is returned successfully.
+ INFO - 2024-10-20 00:06:59 - 127.0.0.1:52219 - GET /docs - 17ffc5e5-257f-4b31-90ce-22dc3efaa7fe - Request initiated.
+ INFO - 2024-10-20 00:06:59 - 127.0.0.1:52219 - GET /docs - 17ffc5e5-257f-4b31-90ce-22dc3efaa7fe - Request don't required authorization.
+ INFO - 2024-10-20 00:06:59 - 127.0.0.1:52219 - GET /docs - 17ffc5e5-257f-4b31-90ce-22dc3efaa7fe - Request sent to endpoint.
+ INFO - 2024-10-20 00:06:59 - 127.0.0.1:52219 - GET /docs - 17ffc5e5-257f-4b31-90ce-22dc3efaa7fe - Response received from endpoint with status code = 200
+ INFO - 2024-10-20 00:06:59 - 127.0.0.1:52219 - GET /docs - 17ffc5e5-257f-4b31-90ce-22dc3efaa7fe - Response received from endpoint
+ INFO - 2024-10-20 00:06:59 - 127.0.0.1:52219 - GET /docs - 17ffc5e5-257f-4b31-90ce-22dc3efaa7fe - Time taken to process request by endpoint '0:00:00.001031'.
+ INFO - 2024-10-20 00:06:59 - 127.0.0.1:52219 - GET /docs - 17ffc5e5-257f-4b31-90ce-22dc3efaa7fe - Response is returned successfully.
+ INFO - 2024-10-20 00:07:01 - 127.0.0.1:52219 - GET /docs - 80fe1188-e03a-4e14-93ed-fb1200ced090 - Request initiated.
+ INFO - 2024-10-20 00:07:01 - 127.0.0.1:52219 - GET /docs - 80fe1188-e03a-4e14-93ed-fb1200ced090 - Request don't required authorization.
+ INFO - 2024-10-20 00:07:01 - 127.0.0.1:52219 - GET /docs - 80fe1188-e03a-4e14-93ed-fb1200ced090 - Request sent to endpoint.
+ INFO - 2024-10-20 00:07:01 - 127.0.0.1:52219 - GET /docs - 80fe1188-e03a-4e14-93ed-fb1200ced090 - Response received from endpoint with status code = 200
+ INFO - 2024-10-20 00:07:01 - 127.0.0.1:52219 - GET /docs - 80fe1188-e03a-4e14-93ed-fb1200ced090 - Response received from endpoint
+ INFO - 2024-10-20 00:07:01 - 127.0.0.1:52219 - GET /docs - 80fe1188-e03a-4e14-93ed-fb1200ced090 - Time taken to process request by endpoint '0:00:00.001020'.
+ INFO - 2024-10-20 00:07:01 - 127.0.0.1:52219 - GET /docs - 80fe1188-e03a-4e14-93ed-fb1200ced090 - Response is returned successfully.
+ INFO - 2024-10-20 00:07:06 - 127.0.0.1:52220 - GET /docs - 0f5c0671-20f8-46b9-8d11-15f9d7c741ea - Request initiated.
+ INFO - 2024-10-20 00:07:06 - 127.0.0.1:52220 - GET /docs - 0f5c0671-20f8-46b9-8d11-15f9d7c741ea - Request don't required authorization.
+ INFO - 2024-10-20 00:07:06 - 127.0.0.1:52220 - GET /docs - 0f5c0671-20f8-46b9-8d11-15f9d7c741ea - Request sent to endpoint.
+ INFO - 2024-10-20 00:07:06 - 127.0.0.1:52220 - GET /docs - 0f5c0671-20f8-46b9-8d11-15f9d7c741ea - Response received from endpoint with status code = 200
+ INFO - 2024-10-20 00:07:06 - 127.0.0.1:52220 - GET /docs - 0f5c0671-20f8-46b9-8d11-15f9d7c741ea - Response received from endpoint
+ INFO - 2024-10-20 00:07:06 - 127.0.0.1:52220 - GET /docs - 0f5c0671-20f8-46b9-8d11-15f9d7c741ea - Time taken to process request by endpoint '0:00:00'.
+ INFO - 2024-10-20 00:07:06 - 127.0.0.1:52220 - GET /docs - 0f5c0671-20f8-46b9-8d11-15f9d7c741ea - Response is returned successfully.
+ INFO - 2024-10-20 00:07:41 - 127.0.0.1:52234 - GET /docs - 575ea70c-f830-4d19-bd3b-2bf3b2f81aa2 - Request initiated.
+ INFO - 2024-10-20 00:07:41 - 127.0.0.1:52234 - GET /docs - 575ea70c-f830-4d19-bd3b-2bf3b2f81aa2 - Request don't required authorization.
+ INFO - 2024-10-20 00:07:41 - 127.0.0.1:52234 - GET /docs - 575ea70c-f830-4d19-bd3b-2bf3b2f81aa2 - Request sent to endpoint.
+ INFO - 2024-10-20 00:07:41 - 127.0.0.1:52234 - GET /docs - 575ea70c-f830-4d19-bd3b-2bf3b2f81aa2 - Response received from endpoint with status code = 200
+ INFO - 2024-10-20 00:07:41 - 127.0.0.1:52234 - GET /docs - 575ea70c-f830-4d19-bd3b-2bf3b2f81aa2 - Response received from endpoint
+ INFO - 2024-10-20 00:07:41 - 127.0.0.1:52234 - GET /docs - 575ea70c-f830-4d19-bd3b-2bf3b2f81aa2 - Time taken to process request by endpoint '0:00:00.001018'.
+ INFO - 2024-10-20 00:07:41 - 127.0.0.1:52234 - GET /docs - 575ea70c-f830-4d19-bd3b-2bf3b2f81aa2 - Response is returned successfully.
+ INFO - 2024-10-20 00:08:16 - 127.0.0.1:52247 - GET /docs - b285b29b-beda-45a6-9592-3f48bbe89e9f - Request initiated.
+ INFO - 2024-10-20 00:08:16 - 127.0.0.1:52247 - GET /docs - b285b29b-beda-45a6-9592-3f48bbe89e9f - Request don't required authorization.
+ INFO - 2024-10-20 00:08:16 - 127.0.0.1:52247 - GET /docs - b285b29b-beda-45a6-9592-3f48bbe89e9f - Request sent to endpoint.
+ INFO - 2024-10-20 00:08:16 - 127.0.0.1:52247 - GET /docs - b285b29b-beda-45a6-9592-3f48bbe89e9f - Response received from endpoint with status code = 200
+ INFO - 2024-10-20 00:08:16 - 127.0.0.1:52247 - GET /docs - b285b29b-beda-45a6-9592-3f48bbe89e9f - Response received from endpoint
+ INFO - 2024-10-20 00:08:16 - 127.0.0.1:52247 - GET /docs - b285b29b-beda-45a6-9592-3f48bbe89e9f - Time taken to process request by endpoint '0:00:00.001241'.
+ INFO - 2024-10-20 00:08:16 - 127.0.0.1:52247 - GET /docs - b285b29b-beda-45a6-9592-3f48bbe89e9f - Response is returned successfully.
+ INFO - 2024-10-20 00:08:17 - 127.0.0.1:52247 - GET /v1.0.0/openapi.json - 01f0ce0a-9076-406a-b70e-d50490cd0456 - Request initiated.
+ INFO - 2024-10-20 00:08:17 - 127.0.0.1:52247 - GET /v1.0.0/openapi.json - 01f0ce0a-9076-406a-b70e-d50490cd0456 - Request don't required authorization.
+ INFO - 2024-10-20 00:08:17 - 127.0.0.1:52247 - GET /v1.0.0/openapi.json - 01f0ce0a-9076-406a-b70e-d50490cd0456 - Request sent to endpoint.
+ INFO - 2024-10-20 00:08:17 - 127.0.0.1:52247 - GET /v1.0.0/openapi.json - 01f0ce0a-9076-406a-b70e-d50490cd0456 - Response received from endpoint with status code = 200
+ INFO - 2024-10-20 00:08:17 - 127.0.0.1:52247 - GET /v1.0.0/openapi.json - 01f0ce0a-9076-406a-b70e-d50490cd0456 - Response received from endpoint
+ INFO - 2024-10-20 00:08:17 - 127.0.0.1:52247 - GET /v1.0.0/openapi.json - 01f0ce0a-9076-406a-b70e-d50490cd0456 - Time taken to process request by endpoint '0:00:00.019520'.
+ INFO - 2024-10-20 00:08:17 - 127.0.0.1:52247 - GET /v1.0.0/openapi.json - 01f0ce0a-9076-406a-b70e-d50490cd0456 - Response is returned successfully.
